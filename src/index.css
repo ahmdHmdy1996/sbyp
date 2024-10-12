@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+[dir='rtl'] {
+    text-align: right;
+  }
+
+
+  body {
+    font-family: "Almarai", sans-serif;
+  }
