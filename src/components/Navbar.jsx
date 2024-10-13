@@ -64,7 +64,7 @@ const Navbar = () => {
             src="/Avatar.png"
             alt="avatar"
           />
-          <span>{t("name")}</span>
+          <span> </span>
         </div>
       </div>
 

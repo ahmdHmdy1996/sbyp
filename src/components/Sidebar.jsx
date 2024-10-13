@@ -26,7 +26,6 @@ const Sidebar = () => {
   const language = localStorage.getItem("language");
   let location = useLocation();
 
-  console.log(location);
   
 
   const Array = [

@@ -54,7 +54,12 @@ export default {
         100:"#ffedd5"
       }
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'pattern': "url('/Images/Rectangle2757.png')",
+        
+      }
+    },
   },
   plugins: [],
 };
