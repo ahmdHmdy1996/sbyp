@@ -4,7 +4,7 @@ import  languageSlice  from "./reducer/languageSlice";
 
 const store = configureStore({
     reducer:{
-        language: languageSlice
+        language: languageSlice,
     }
 })
 

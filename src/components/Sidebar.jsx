@@ -81,7 +81,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="hidden lg:block w-1/6 h-screen bg-white pt-8 px-5 ">
+    <div className={`${location.pathname === "/login" ?"hidden lg:hidden":" hidden lg:block"} w-1/6 h-screen bg-white pt-8 px-5`} >
       <div className=" flex flex-col ">
         <img src="/logo.png" className="max-w-[120px] mb-8" alt="logo" />
         <ul className="flex flex-col">
@@ -108,71 +108,7 @@ const Sidebar = () => {
             </Link>
           ))}
 
-          {/* <Link
-            to="/"
-            className=" bg-menu py-2 text-white px-2 rounded-full text-l relative mb-2"
-          >
-            <TbLayout2
-              className={`inline ${language == "en" ? "mr-1" : "ml-1"} `}
-            />{" "}
-            {t("Dashboards")}{" "}
-            {language == "en" ? (
-              <IoIosArrowForward className="inline text-xl absolute right-2  top-3" />
-            ) : (
-              <IoIosArrowBack className="inline text-xl absolute left-2 top-3" />
-            )}
-          </Link>
-
-          <Link
-            to="/products"
-            className=" py-2 px-2 mb-2 text-l hover:text-white hover:rounded-full hover:bg-menu"
-          >
-            <img
-              src="archive-book.svg"
-              alt=""
-              className={`inline ${
-                language == "en" ? "mr-1" : "ml-1"
-              } w-[17px] `}
-            />
-            {t("ProductsCatalog")}
-          </Link>
-
-          <li className=" py-2 px-2 text-l mb-2 hover:text-white hover:rounded-full hover:bg-menu">
-            <BiStoreAlt
-              className={`inline ${language == "en" ? "mr-1" : "ml-1"} `}
-            />{" "}
-            {t("MyProducts")}
-          </li>
-          <li className=" py-2 px-2 text-l mb-2 hover:text-white hover:rounded-full hover:bg-menu">
-            <TbCube
-              className={`inline ${language == "en" ? "mr-1" : "ml-1"} `}
-            />
-            {t("Orders")}
-          </li>
-          <li className=" py-2 px-2 text-l mb-2 hover:text-white hover:rounded-full hover:bg-menu">
-            <PiStarBold
-              className={`inline ${language == "en" ? "mr-1" : "ml-1"} `}
-            />
-            {t("SubscriptionPlan")}
-          </li>
-          <li className=" py-3 px-2 text-l mb-2 hover:text-white hover:rounded-full hover:bg-menu">
-            <LiaWalletSolid
-              className={`inline ${language == "en" ? "mr-1" : "ml-1"} `}
-            />
-            {t("Wallet")}
-          </li>
-          <li className=" py-2 px-2 text-l mb-2 hover:text-white hover:rounded-full hover:bg-menu">
-            <TbNotification
-              className={`inline ${language == "en" ? "mr-1" : "ml-1"} `}
-            />
-            {t("Integrations")}
-          </li>
-          <li className=" py-2 px-2 text-l mb-2 hover:text-white hover:rounded-full hover:bg-menu">
-            <LuTicket
-              className={`inline ${language == "en" ? "mr-1" : "ml-1"} `}
-            />
-            {t("MyTickets")}
-          </li> */}
+          
         </ul>
       </div>
     </div>

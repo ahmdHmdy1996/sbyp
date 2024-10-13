@@ -11,13 +11,14 @@ import {
 } from "../redux/reducer/languageSlice";
 import MobileMenu from "./MobileMenu";
 import { MdMenu } from "react-icons/md";
+import { useLocation } from 'react-router-dom';
 
 
 
 
 const Navbar = () => {
   const [open , setOpen] = useState(false)
-
+  const {pathname} = useLocation()
   const dispatch = useDispatch();
   const lang = useSelector((state) => state.language.lang);
 
@@ -41,7 +42,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`bg-home px-4 pb-5 flex flex-col lg:flex-row justify-between  items-center content-center  ${
+      className={`${pathname === '/login' ?"hidden" :"flex"} bg-home px-4 pb-5  flex-col lg:flex-row justify-between  items-center content-center  ${
         language == "en" ? "right-0" : "left-0"
       }`}
     >
