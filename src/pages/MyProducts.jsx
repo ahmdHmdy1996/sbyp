@@ -146,7 +146,7 @@ export const Array = [
               </td>
               <td>
                 <div className="flex justify-around">
-                  <Link to={`/my-product/${item.code}`}><img src={edit} alt="" /></Link>
+                  <Link to={`/dashboard/my-product/${item.code}`}><img src={edit} alt="" /></Link>
                   <button><img src={Shopping} alt="" /></button>
                   <button><img src={trash} alt="" /></button>
                 </div>

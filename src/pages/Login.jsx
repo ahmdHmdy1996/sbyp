@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Linked from "/Images/linkedin-sales.png";
 import logo from "/Images/logo-white.png";
+import eye from "/Icons/eye.png";
+import eyeSlash from "/Icons/eye-slash.png";
 import { motion } from "framer-motion";
 
 const container = {
@@ -26,6 +28,7 @@ const item = {
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [visibale, setVisibale] = useState(false);
 
   const HandleSubmit = (e) => {
     e.preventDefault();
@@ -47,7 +50,10 @@ const Login = () => {
           animate="visible"
           className="absolute bottom-8 w-[90%] h-44 m-auto left-0 right-0  bg-pattern p-6 text-white rounded-xl"
         >
-          <motion.h2 variants={item} className="text-lg font-bold mb-4 bg-menu inline-block p-3  rounded-lg">
+          <motion.h2
+            variants={item}
+            className="text-lg font-bold mb-4 bg-menu inline-block p-3  rounded-lg"
+          >
             أفضل نظام لتقديم متجرك في العالم العربي
           </motion.h2>
           <motion.p variants={item}>
@@ -78,18 +84,24 @@ const Login = () => {
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
               />
             </div>
-            <div>
-              <label className="block text-gray-700">كلمة المرور</label>
+            <label className="block text-gray-700">كلمة المرور</label>
+            <div className="relative">
               <input
                 onChange={(e) => {
                   setPassword(e.target.value);
                 }}
                 id="current-password"
                 autocomplete="current-password"
-                type="password"
+                type={visibale ? "text" : "password"}
                 placeholder="كلمة المرور"
-                className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
+                className=" w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
               />
+              <div
+                className="p-2 absolute left-1 top-1"
+                onClick={() => setVisibale(!visibale)}
+              >
+                {visibale ? <img src={eye} /> : <img src={eyeSlash} />}
+              </div>
             </div>
             <div className="flex items-center justify-between">
               <label className="flex items-center">
@@ -112,7 +124,7 @@ const Login = () => {
           </form>
           <div className="mt-6 text-center">
             <p className="text-gray-600">
-              ليس لديك حساب؟{" "}
+              ليس لديك حساب؟
               <a href="#" className="text-menu">
                 إنشاء حساب جديد
               </a>

@@ -14,6 +14,41 @@ import globe from "/Icons/globe.svg";
 import mail from "/Icons/mail.svg";
 import star from "/Icons/star.svg";
 
+
+const data = {
+  labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+  datasets: [
+    {
+      data: ["4.25", "2.47", "6.25", "3.25", "5.58", "4.24"],
+      backgroundColor: "transparent",
+      borderColor: "#000",
+      pointBorderColor: "transparent",
+      pointBorderWidth: 4,
+      tension: 0.5,
+    },
+  ],
+};
+const options = {
+  responsive: true,
+  maintainAspectRatio: false,
+  plugins: {
+    legend: false,
+  },
+  scales: {
+    x: {
+      grid: { display: false },
+    },
+    y: {
+      grid: { display: false },
+    },
+  },
+};
+
+
+
+
+
+
 const SourceVisits = () => {
   const { t, i18n } = useTranslation();
   const language = localStorage.getItem("language");
@@ -26,35 +61,7 @@ const SourceVisits = () => {
     }
   }, [i18n]);
 
-  const data = {
-    labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
-    datasets: [
-      {
-        data: ["4.25", "2.47", "6.25", "3.25", "5.58", "4.24"],
-        backgroundColor: "transparent",
-        borderColor: "#000",
-        pointBorderColor: "transparent",
-        pointBorderWidth: 4,
-        tension: 0.5,
-      },
-    ],
-  };
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-    plugins: {
-      legend: false,
-    },
-    scales: {
-      x: {
-        grid: { display: false },
-      },
-      y: {
-        grid: { display: false },
-      },
-    },
-  };
-
+  
   const Array = [
     {
       name: t("DirectSource"),

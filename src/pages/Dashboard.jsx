@@ -8,7 +8,7 @@ import TotalSalesMon from "../components/TotalSalesMon";
 import WeeklyProfit from "../components/WeeklyProfit";
 import WelcomeMsg from "../components/WelcomeMsg";
 
-const Home = () => {
+const Dashboard = () => {
   return (
     <div className="bg-home row-span-2 grid grid-cols-6 gap-5 mt-5 ">
       <WelcomeMsg />
@@ -24,4 +24,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Dashboard;
