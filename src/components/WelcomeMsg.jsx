@@ -2,8 +2,13 @@ import React from "react";
 import { IoIosArrowBack } from "react-icons/io";
 import WelcomImg from "/Images/Frame-20.png"
 import WellcomeHand from '/Images/wellcome.png'
+import { useSelector } from "react-redux";
+import { t } from "i18next";
 
 const WelcomeMsg = () => {
+  const {user} = useSelector((state)=>state.auth) ;
+  
+  
   return (
     <div className="relative col-span-3 lg:col-span-4  w-full m-auto">
       <img
@@ -13,7 +18,7 @@ const WelcomeMsg = () => {
       />
       <div className="absolute top-1 right-4 lg:top-10 lg:right-10 flex items-center">
         <p className=" text-xl lg:text-4xl text-white">
-          مرحبًا بعودتك , محمد
+          مرحبًا بعودتك , {user ? user.user_name || user.user.user_name : t("name")}
         </p>
         <img src={WellcomeHand} className="w-[60px]" />
       </div>

@@ -6,8 +6,8 @@ import Frame45 from "/Images/Frame 45.png";
 
 const Hero = () => {
   return (
-    <div className="container mx-auto flex flex-col md:flex-row items-center justify-between py-8 ">
-      <div className="md:w-1/2 text-center md:text-right md:mt-0 mr-2 ">
+    <section className="container mx-auto flex flex-col lg:flex-row items-center justify-between py-16 lg:py-8 ">
+      <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start  text-centerlg:text-right md:mt-0 mr-2 m-auto ">
         <h1 className="text-5xl font-bold text-gray-900 leading-tight  ">
           ابدأ رحلتك في التجارة الإلكترونية بسهولة مع نظام SBYP المتكامل!
         </h1>
@@ -15,13 +15,13 @@ const Hero = () => {
           استمتع بالمرونة الكاملة في إدارة منتجاتك وطلبات عملائك مع SBYP. النظام
           الذي يمنحك كل ما تحتاجه لتنمية أعمالك بسرعة وفعالية.
         </p>
-        <div className="relative mt-6 flex flex-col md:flex-row items-center justify-center md:justify-start w-4/5">
+        <div className="relative mt-6 flex flex-col md:flex-row items-center  justify-center md:justify-start w-4/5">
           <input
             type="email"
             placeholder="بريدك الإلكتروني"
-            className="border border-gray-300 p-4 rounded-md w-full  md:mr-4 mb-4 md:mb-0"
+            className="border border-gray-300 p-4 rounded-md w-full lg:mr-4 mb-4 md:mb-0 stroke-menu"
           />
-          <button className=" absolute bg-menu left-2 text-white px-6 py-2 rounded-md hover:bg-main">
+          <button className=" absolute bg-menu left-2 top-2 text-white px-6 py-2 rounded-md hover:bg-main">
             ابدأ الآن
           </button>
         </div>
@@ -46,7 +46,7 @@ const Hero = () => {
         <img
           src={HeroPng}
           alt="امرأة تحمل صناديق"
-          className="rounded-lg"
+          className="rounded-lg min-w-64"
         />
         <div className="animate-bounce  absolute flex justify-between items-center top-10 left-10 bg-white p-2 rounded-lg shadow-lg w-52">
           <div className="flex flex-col">
@@ -69,7 +69,7 @@ const Hero = () => {
         <img src={Frame45}  className="absolute bottom-10 right-[-2.5rem]"/>
         
       </div>
-    </div>
+    </section>
   );
 };
 

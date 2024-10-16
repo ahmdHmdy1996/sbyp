@@ -47,6 +47,7 @@ const Product = ({item}) => {
           </div>
           <img className="max-w-[70px]" src="/Alibaba-Logo.png" alt="" />
         </div>
+        <button className="bg-menu mt-4 text-white py-2 px-4 rounded-full w-[98%] m-auto hover:scale-110">إضافة</button>
       </div>
     </div>
   );

@@ -50,8 +50,8 @@ const Orders = () => {
   const language = localStorage.getItem("language");
 
   return (
-    <div>
-      <div className="flex justify-between align-center items-center my-3">
+    <div className="">
+      <div className="flex justify-between align-center items-center my-3 ">
         <h3 className="text-2xl font-bold"> الطلبات</h3>
         <div className="flex justify-center">
           <div className="relative">

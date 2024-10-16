@@ -36,8 +36,7 @@ export const Array = [
   },
 ];
 
- const MyProducts = () => {
-  
+const MyProducts = () => {
   const { t, i18n } = useTranslation();
   useEffect(() => {
     const savedLanguage = localStorage.getItem("language");
@@ -50,7 +49,7 @@ export const Array = [
   const language = localStorage.getItem("language");
 
   return (
-    <div className="mt-5">
+    <div className="mt-5 ">
       <div className="flex  justify-between items-center mb-4">
         <h1 className="mt-4 font-bold text-xl">منتجاتي</h1>
         <div className="relative">
@@ -82,104 +81,114 @@ export const Array = [
           />
         </div>
       </div>
-
-      <table className="w-full mb-5">
-        <thead>
-          <tr className="text-gray-500 text-sm">
-            <th className="py-2">
-              <input type="checkbox" />
-            </th>
-            <th className="py-2">المنتج</th>
-            <th className="py-2">التصنيف</th>
-            <th className="py-2">كود المنتج</th>
-            <th className="py-2">السعر</th>
-            <th className="py-2">الكمية</th>
-            <th className="py-2">الحالة</th>
-            <th className="py-2">الإجراءات</th>
-          </tr>
-        </thead>
-        <tbody className="text-start">
-          {Array.map((item) => (
-            <tr key={item.pruductName} className="border-t text-start">
-              <td className="py-2">
+      <div className="bg-white p-4 rounded-2xl">
+        <table className="w-full mb-5 ">
+          <thead>
+            <tr className="text-gray-500 text-sm">
+              <th className="py-2">
                 <input type="checkbox" />
-              </td>
-              <td className="py-2 flex items-center ">
-                <img
-                  src={item.image}
-                  alt={item.pruductName}
-                  className="w-7 h-7 rounded-full ml-2"
-                />
-                <div className="flex flex-col">
-                  <span>{item.pruductName}</span>
-                  <span className="text-gray-300">{item.brand}</span>
-                </div>
-              </td>
-
-              <td className="py-2 ">
-                <div className="flex">
+              </th>
+              <th className="py-2">المنتج</th>
+              <th className="py-2">التصنيف</th>
+              <th className="py-2">كود المنتج</th>
+              <th className="py-2">السعر</th>
+              <th className="py-2">الكمية</th>
+              <th className="py-2">الحالة</th>
+              <th className="py-2">الإجراءات</th>
+            </tr>
+          </thead>
+          <tbody className="text-start">
+            {Array.map((item) => (
+              <tr key={item.pruductName} className="border-t text-start">
+                <td className="py-2">
+                  <input type="checkbox" />
+                </td>
+                <td className="py-2 flex items-center ">
                   <img
-                    src={item.icon}
-                    alt={item.caategory}
+                    src={item.image}
+                    alt={item.pruductName}
                     className="w-7 h-7 rounded-full ml-2"
                   />
-                  <span>{item.caategory}</span>
-                </div>
-              </td>
-              <td>{item.code}</td>
-              <td>{item.price} {t("curr")}</td>
-              <td>{item.quantity}</td>
-              <td className="py-2">
-                <span
-                  className={`${
-                    item.statusType == "publish"
-                      ? "text-green-500 bg-green-100 p-2 rounded-md"
-                      : ""
-                  } ${
-                    item.statusType == "classified"
-                      ? "text-orange-500 bg-orange-100 p-2 rounded-md"
-                      : ""
-                  }`}
-                >
-                  {item.status}
-                </span>
-              </td>
-              <td>
-                <div className="flex justify-around">
-                  <Link to={`/dashboard/my-product/${item.code}`}><img src={edit} alt="" /></Link>
-                  <button><img src={Shopping} alt="" /></button>
-                  <button><img src={trash} alt="" /></button>
-                </div>
-                
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      <div className="flex items-center justify-between mt-8">
-        <span className="text-sm text-gray-500">عرض 1 الى 7 من 10 منتجات</span>
-        <div className="flex items-center space-x-2 space-x-reverse">
-          <button className="px-3 py-1 border border-gray-300 rounded-lg text-sm text-gray-500">
-            «
-          </button>
-          <button className="px-3 py-1 border border-gray-300 rounded-lg text-sm bg-menu text-white">
-            1
-          </button>
-          <button className="px-3 py-1 border border-gray-300 rounded-lg text-sm ">
-            2
-          </button>
-          <button className="px-3 py-1 border border-gray-300 rounded-lg text-sm ">
-           3
-          </button>
-          <button className="px-3 py-1 border border-gray-300 rounded-lg text-sm ">
-            4
-          </button>
-          <button className="px-3 py-1 border border-gray-300 rounded-lg text-sm ">
-            5
-          </button>
-          <button className="px-3 py-1 border border-gray-300 rounded-lg text-sm text-gray-500">
-            »
-          </button>
+                  <div className="flex flex-col">
+                    <span>{item.pruductName}</span>
+                    <span className="text-gray-300">{item.brand}</span>
+                  </div>
+                </td>
+
+                <td className="py-2 ">
+                  <div className="flex">
+                    <img
+                      src={item.icon}
+                      alt={item.caategory}
+                      className="w-7 h-7 rounded-full ml-2"
+                    />
+                    <span>{item.caategory}</span>
+                  </div>
+                </td>
+                <td>{item.code}</td>
+                <td>
+                  {item.price} {t("curr")}
+                </td>
+                <td>{item.quantity}</td>
+                <td className="py-2">
+                  <span
+                    className={`${
+                      item.statusType == "publish"
+                        ? "text-green-500 bg-green-100 p-2 rounded-md"
+                        : ""
+                    } ${
+                      item.statusType == "classified"
+                        ? "text-orange-500 bg-orange-100 p-2 rounded-md"
+                        : ""
+                    }`}
+                  >
+                    {item.status}
+                  </span>
+                </td>
+                <td>
+                  <div className="flex justify-around">
+                    <Link to={`/dashboard/my-product/${item.code}`}>
+                      <img src={edit} alt="" />
+                    </Link>
+                    <button>
+                      <img src={Shopping} alt="" />
+                    </button>
+                    <button>
+                      <img src={trash} alt="" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div className="flex items-center justify-between mt-8">
+          <span className="text-sm text-gray-500">
+            عرض 1 الى 7 من 10 منتجات
+          </span>
+          <div className="flex items-center space-x-2 space-x-reverse">
+            <button className="px-3 py-1 border border-gray-300 rounded-lg text-sm text-gray-500">
+              «
+            </button>
+            <button className="px-3 py-1 border border-gray-300 rounded-lg text-sm bg-menu text-white">
+              1
+            </button>
+            <button className="px-3 py-1 border border-gray-300 rounded-lg text-sm ">
+              2
+            </button>
+            <button className="px-3 py-1 border border-gray-300 rounded-lg text-sm ">
+              3
+            </button>
+            <button className="px-3 py-1 border border-gray-300 rounded-lg text-sm ">
+              4
+            </button>
+            <button className="px-3 py-1 border border-gray-300 rounded-lg text-sm ">
+              5
+            </button>
+            <button className="px-3 py-1 border border-gray-300 rounded-lg text-sm text-gray-500">
+              »
+            </button>
+          </div>
         </div>
       </div>
     </div>

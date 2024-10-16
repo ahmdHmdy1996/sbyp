@@ -17,6 +17,8 @@ import { useLocation } from 'react-router-dom';
 
 
 const Navbar = () => {
+
+  const {user} = useSelector((state)=>state.auth) ;
   const [open , setOpen] = useState(false)
   const {pathname} = useLocation()
   const dispatch = useDispatch();
@@ -120,11 +122,11 @@ const Navbar = () => {
           </li>
           <li className="text-xl border bg-white text-gray-500 rounded-full border-[#DADADA] px-3 py-3 mx-3 cursor-pointer">
             <MdOutlineTranslate
-              onClick={() =>
-                document.body.dir === "rtl"
-                  ? changeLanguage("en")
-                  : changeLanguage("ar")
-              }
+              // onClick={() =>
+              //   document.body.dir === "rtl"
+              //     ? changeLanguage("en")
+              //     : changeLanguage("ar")
+              // }
             />
           </li>
           <li className="text-xl border bg-white text-gray-500 rounded-full border-[#DADADA] px-3 py-3 ">
@@ -139,6 +141,7 @@ const Navbar = () => {
             language == "en" ? "pl-5 ml-3" : "pr-5 mr-3"
           } `}
         >
+
           <img
             className={`${
               language == "en" ? "left-0" : "right-0"
@@ -146,7 +149,7 @@ const Navbar = () => {
             src="/Avatar.png"
             alt="avatar"
           />
-          <span>{t("name")}</span>
+          <span>{user ? user.user_name || user.user.user_name: t("name")}</span>
         </div>
       </div>
     </nav>

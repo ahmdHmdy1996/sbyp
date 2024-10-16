@@ -9,7 +9,7 @@ import Frame95 from "/Images/Frame95.png";
 import Frame96 from "/Images/Frame96.png";
 import Frame97 from "/Images/Frame97.png";
 
-const Array = [
+const productArray = [
   {
     name: "أسم المنتج",
     price: 150,
@@ -145,8 +145,8 @@ const Products = () => {
 
       {/* products catalog */}
       <div className="grid grid-cols-3">
-        {Array.map((item) => (
-          <Product item={item} />
+        {productArray.map((item,index) => (
+          <Product item={item} key={index} />
         ))}
       </div>
     </div>
