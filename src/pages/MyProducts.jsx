@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import DotVetrical from "/Icons/dots-vertical.svg";
-import deviceLaptop from "/Icons/device-laptop.svg";
-import edit from "/Icons/edit.svg";
-import Shopping from "/Icons/shopping-bag.svg";
-import trash from "/Icons/trash.svg";
-import oneplusPro from "/Images/oneplus-7pro.png";
-import magicMouse from "/Images/magic-mouse.png";
+import DotVetrical from "/src/assets/Icons/dots-vertical.svg";
+import deviceLaptop from "/src/assets/Icons/device-laptop.svg";
+import edit from "/src/assets/Icons/edit.svg";
+import Shopping from "/src/assets/Icons/shopping-bag.svg";
+import trash from "/src/assets/Icons/trash.svg";
+import oneplusPro from "/src/assets/Images/oneplus-7pro.png";
+import magicMouse from "/src/assets/Images/magic-mouse.png";
 import { Link } from "react-router-dom";
 
 export const Array = [

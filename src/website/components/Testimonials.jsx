@@ -1,7 +1,7 @@
 import React from "react";
-import profile from "/Icons/Profile.png";
-import profile1 from "/Icons/Profile1.png";
-import profile2 from "/Icons/Profile2.png";
+import profile from "/src/assets/Icons/Profile.png";
+import profile1 from "/src/assets/Icons/Profile1.png";
+import profile2 from "/src/assets/Icons/Profile2.png";
 import { Element } from "react-scroll";
 const Testimonials = () => {
   const TestimonialsArray = [
@@ -36,7 +36,7 @@ const Testimonials = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {TestimonialsArray.map((testimonial, index) => (
             <div key={index} className="bg-gray-100 p-6 rounded-lg shadow-md">
-              <p className="text-lg text-gray-400 mb-20">{testimonial.text}</p>
+              <p className="text-sm lg:text-lg text-gray-400 mb-12 lg:mb-20">{testimonial.text}</p>
               <div className="flex items-center">
                 <img
                   src={testimonial.img}

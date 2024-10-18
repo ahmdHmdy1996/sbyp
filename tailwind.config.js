@@ -23,6 +23,7 @@ export default {
     },
     colors: {
       main: "#5b21b6",
+      hover:"#8C82F0",
       home: "#f5f6fb",
       primary: "#0047FF",
       white: "#FFF",

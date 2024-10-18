@@ -1,40 +1,53 @@
-import Dashboard from "./pages/Dashboard";
 import { Routes, Route, useLocation } from "react-router-dom";
-import Products from "./pages/Products";
-import MyProducts from "./pages/MyProducts";
-import EditProduct from "./pages/EditProduct";
-import Orders from "./pages/Orders";
-import Login from "./pages/Login";
-import Home from "./website/Home";
-import DashBoardLayOut from "./pages/DashBoardLayOut";
-import { useEffect } from "react";
+import { lazy, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import Weblayout from "./website/Weblayout";
-import Subscription from "./website/Subscription";
-import Register from "./pages/Register";
-import "react-toastify/ReactToastify.css";
 import axios from "axios";
-import ScrollToTop from "./website/components/ScrollToTop";
-import Addedproducts from "./pages/Addedproducts";
-import Addproduct from "./pages/Addproduct";
-import SubscriptionPlan from "./pages/SubscriptionPlan";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./redux/reducer/authSlice";
-import ProtectedRoute from "./pages/ProtectedRoute";
+import "react-toastify/ReactToastify.css";
+
+// Dashboard import
+const Dashboard = lazy(()=> import("./pages/Dashboard"));
+const Products = lazy(()=> import("./pages/Products"));
+const MyProducts = lazy(()=> import("./pages/MyProducts"));
+const EditProduct = lazy(()=> import("./pages/EditProduct"));
+const Orders = lazy(()=> import("./pages/Orders"));
+const DashBoardLayOut = lazy(()=> import("./pages/DashBoardLayOut"));
+const Addedproducts = lazy(()=> import("./pages/Addedproducts"));
+const Addproduct = lazy(()=> import("./pages/Addproduct"));
+const SubscriptionPlan = lazy(()=> import("./pages/SubscriptionPlan"));
+
+// Login and Register
+const Login = lazy(()=> import("./pages/Login"));
+const Register = lazy(()=> import("./pages/Register"));
+
+//Home page import
+const Home = lazy(()=> import("./website/Home"))
+const Weblayout = lazy(()=> import("./website/Weblayout"))
+const Subscription = lazy(()=> import("./website/Subscription"))
+
+// Protected Route
+const ProtectedRoute = lazy(()=> import("./pages/ProtectedRoute"))
+
+
 
 axios.defaults.withCredentials = true;
 
 function App() {
   const dispatch = useDispatch();
 
+  const { lang } = useSelector((state) => state.language);
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
-    const savedLanguage = localStorage.getItem("language");
+    // language basic ar
+    localStorage.setItem("language", lang);
+    const savedLanguage = localStorage.getItem("language") || lang;
     if (savedLanguage) {
       i18n.changeLanguage(savedLanguage);
       document.body.dir = savedLanguage === "ar" ? "rtl" : "ltr"; // Set direction
     }
+
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
       dispatch(setUser(user)); // Rehydrate state
@@ -54,7 +67,14 @@ function App() {
 
       {/** website Dashboard */}
 
-      <Route path="/dashboard/" element={<DashBoardLayOut />}>
+      <Route
+        path="/dashboard/"
+        element={
+          
+            <DashBoardLayOut />
+          
+        }
+      >
         <Route index element={<Dashboard />} />
         <Route path="products" element={<Products />} />
         <Route path="my-products" element={<MyProducts />} />

@@ -1,10 +1,10 @@
 import React from "react";
-import Avatar from "/Images/Avatar.png";
-import Avatar1 from "/Images/Avatar-1.png";
-import Avatar2 from "/Images/Avatar-2.png";
-import Avatar3 from "/Images/Avatar-3.png";
-import Avatar4 from "/Images/Frame93.png";
-import DotVetrical from "/Icons/dots-vertical.svg";
+import Avatar from "/src/assets/Images/Avatar.png";
+import Avatar1 from "/src/assets/Images/Avatar-1.png";
+import Avatar2 from "/src/assets/Images/Avatar-2.png";
+import Avatar3 from "/src/assets/Images/Avatar-3.png";
+import Avatar4 from "/src/assets/Images/Frame93.png";
+import DotVetrical from "/src/assets/Icons/dots-vertical.svg";
 
 const TopSelling = () => {
   const Array = [

@@ -2,8 +2,8 @@ import React, { useEffect, useState } from "react";
 import { Array } from "./MyProducts";
 import { useLocation } from "react-router-dom";
 import Switch from "@mui/material/Switch";
-import Vector from "/Icons/Vector2.png";
-import link from "/Icons/link.svg";
+import Vector from "/src/assets/Icons/Vector2.png";
+import link from "/src/assets/Icons/link.svg";
 
 const label = { inputProps: { "aria-label": "Switch demo" } };
 

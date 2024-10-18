@@ -1,11 +1,11 @@
 import React from "react";
 import DotVetrical from "/Icons/dots-vertical.svg";
-import Mail from "/Icons/mail-1.svg";
-import Link from "/Icons/link.svg";
-import Mouse from "/Icons/mouse.svg";
-import Users from "/Icons/users.svg";
-import Alert from "/Icons/AlertReportProblem.svg";
-import Ban from "/Icons/ban.svg";
+import Mail from "/src/assets/Icons/mail-1.svg";
+import Link from "/src/assets/Icons/link.svg";
+import Mouse from "/src/assets/Icons/mouse.svg";
+import Users from "/src/assets/Icons/users.svg";
+import Alert from "/src/assets/Icons/AlertReportProblem.svg";
+import Ban from "/src/assets/Icons/ban.svg";
 
 const Array = [
   {

@@ -1,6 +1,8 @@
 // features/auth/authSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { toast } from "react-toastify";
+
 
 const API_URL = "https://sbyp-sa.com/api";
 
@@ -17,10 +19,11 @@ export const register = createAsyncThunk(
           withCredentials: true,
         }
       );
-      
+      localStorage.setItem('user', JSON.stringify(response.data.user)); // Save to localStorage
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      console.log(error.response.data.errors);
+      return rejectWithValue(error.response.data.errors);
     }
   }
 );
@@ -35,6 +38,7 @@ export const login = createAsyncThunk(
         withCredentials: true,
       });
       localStorage.setItem('user', JSON.stringify(response.data.user)); // Save to localStorage
+      localStorage.setItem('token',JSON.stringify(response.data.access_token))
       return response.data;
     } catch (error) {
       return rejectWithValue(error.response.data);
@@ -70,6 +74,9 @@ const authSlice = createSlice({
     builder.addCase(register.fulfilled, (state, action) => {
       state.loading = false;
       state.user = action.payload;
+      state.error= null,
+      state.isAuthenticated = true;
+      
     });
     builder.addCase(register.rejected, (state, action) => {
       state.loading = false;
@@ -84,6 +91,7 @@ const authSlice = createSlice({
     builder.addCase(login.fulfilled, (state, action) => {
       state.loading = false;
       state.user = action.payload;
+      state.isAuthenticated = true;
     });
     builder.addCase(login.rejected, (state, action) => {
       state.loading = false;

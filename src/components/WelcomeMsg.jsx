@@ -1,9 +1,10 @@
 import React from "react";
 import { IoIosArrowBack } from "react-icons/io";
-import WelcomImg from "/Images/Frame-20.png"
-import WellcomeHand from '/Images/wellcome.png'
+import WelcomImg from "/src/assets/Images/Frame-20.png"
+import WellcomeHand from '/src/assets/Images/wellcome.png'
 import { useSelector } from "react-redux";
 import { t } from "i18next";
+import { Link } from "react-router-dom";
 
 const WelcomeMsg = () => {
   const {user} = useSelector((state)=>state.auth) ;
@@ -23,10 +24,10 @@ const WelcomeMsg = () => {
         <img src={WellcomeHand} className="w-[60px]" />
       </div>
       <p className="absolute top-[3rem] right-3 lg:top-[6rem] lg:right-[2.5rem] text-sm text-white font-light">إجمالي معدل التحويلات 28.5%</p>
-      <div className="flex justify-between items-center bg-black w-48 py-3 rounded-full  px-3 absolute bottom-3 right-3 lg:bottom-12 lg:right-10">
+      <Link to='/dashboard/add-product' className="flex justify-between items-center bg-black w-48 py-3 rounded-full  px-3 absolute bottom-3 right-3 lg:bottom-12 lg:right-10 hover:bg-black/75">
         <span className=" mx-2 text-white">إضافة منتج جديد</span>
          <IoIosArrowBack className="w-8 h-8 bg-white rounded-full text-black "/>
-      </div>
+      </Link>
     </div>
   );
 };

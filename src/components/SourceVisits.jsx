@@ -9,10 +9,10 @@ import {
 } from "chart.js";
 import { useTranslation } from "react-i18next";
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
-import shadow from "/Icons/shadow.svg";
-import globe from "/Icons/globe.svg";
-import mail from "/Icons/mail.svg";
-import star from "/Icons/star.svg";
+import shadow from "/src/assets/Icons/shadow.svg";
+import globe from "/src/assets/Icons/globe.svg";
+import mail from "/src/assets/Icons/mail.svg";
+import star from "/src/assets/Icons/star.svg";
 
 
 const data = {

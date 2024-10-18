@@ -1,11 +1,13 @@
 import React from "react";
-import logo from "/Images/logo-white.png";
-import linkedin from "/Images/akar-icons_linkedin-fill.png";
-import twitter from "/Images/akar-icons_twitter-fill.png";
-import instagram from "/Images/bx_bxl-instagram-alt.png";
-import Pattern from "/Icons/Pattern.svg";
-import mail from "/Icons/mail-1.svg";
+import logo from "/src/assets/Images/logo-white.png";
+import linkedin from "/src/assets/Images/akar-icons_linkedin-fill.png";
+import twitter from "/src/assets/Images/akar-icons_twitter-fill.png";
+import instagram from "/src/assets/Images/bx_bxl-instagram-alt.png";
+import Pattern from "/src/assets/Icons/Pattern.svg";
+import mail from "/src/assets/Icons/mail-1.svg";
 import { Element } from "react-scroll";
+import { Link as Scroll } from "react-scroll";
+
 const Footer = () => {
   return (
     <Element name="footer">
@@ -29,28 +31,28 @@ const Footer = () => {
             </div>
             <div>
               <h2 className="text-xl font-bold mb-4">القائمة</h2>
-              <ul className="text-md text-gray-300">
-                <li className="mb-2 ">
+              <ul className="text-md text-gray-300  flex space-x-5 space-x-reverse lg:flex-col lg:space-x-0">
+                <Scroll to="join" className="mb-2 hover:text-white">
                   <a href="#">كيف نعمل؟</a>
-                </li>
-                <li className="mb-2">
+                </Scroll>
+                <Scroll  to="partner" className="mb-2 hover:text-white">
                   <a href="#">مميزاتنا</a>
-                </li>
-                <li className="mb-2">
+                </Scroll>
+                <Scroll to="testimonials" className="mb-2 hover:text-white">
                   <a href="#">آراء عملائنا</a>
-                </li>
-                <li className="mb-2">
+                </Scroll>
+                <Scroll to="subscription" className="mb-2 hover:text-white">
                   <a href="#">باقاتنا</a>
-                </li>
-                <li className="mb-2">
+                </Scroll>
+                <Scroll className="mb-2 hover:text-white">
                   <a href="#">تواصل معنا</a>
-                </li>
+                </Scroll>
               </ul>
             </div>
 
             <div className="text-start mb-8 lg:col-span-2">
-              <h1 className="text-3xl font-bold mb-4">انضم إلى مجتمعنا</h1>
-              <p className="mb-6 text-gray-300">
+              <h1 className="text-xl lg:text-3xl font-bold mb-4">انضم إلى مجتمعنا</h1>
+              <p className="text-xs lg:text-lg mb-6 text-gray-300">
                 اشترك الآن لتكون جزءًا من مجتمعنا النابض بالحياة واستفد من أحدث
                 التحديثات، والعروض الحصرية، ونصائح الخبراء التي ستساعدك على
                 تحقيق أهدافك في التجارة الإلكترونية

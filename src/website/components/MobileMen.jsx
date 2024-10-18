@@ -16,14 +16,15 @@ const MobileMenu = ({ open }) => {
           transition={{ duration: 0.3 }}
           className={`absolute top-20 left-0 w-full h-screen z-20 `}
         >
-          <div className="text-xl font-semibold bg-menu text-white py-10 m-6 rounded-3xl  ">
-            <ul className="flex flex-col justify-center items-center gap-10 cursor-pointer">
-              <Scroll to="join">كيف نعمل؟</Scroll>
+          <div className="text-xl font-semibold  text-white py-10  rounded-3xl  ">
+            <ul className="flex flex-col justify-center p-6 items-center gap-10 cursor-pointer bg-menu  ">
+              <Scroll className="hover:scale-120" to="join">كيف نعمل؟</Scroll>
               <Scroll to="partner">مميزاتنا</Scroll>
               <Scroll to="testimonials">آراء عملائنا</Scroll>
               <Link to="/subscription"> باقاتنا</Link>
               <Scroll to="footer">تواصل معنا</Scroll>
             </ul>
+            <button className="w-full h-16  bg-red-500">تسجيل الخروج</button>
           </div>
         </motion.div>
       )}

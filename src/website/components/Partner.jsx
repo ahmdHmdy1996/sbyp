@@ -1,9 +1,9 @@
 import React from "react";
-import Group28 from "/Images/Group28.svg";
-import Chart2 from "/Icons/Chart2.svg";
-import Rocket from "/Icons/Rocket.svg";
-import Security from "/Icons/Security.svg";
-import Dashboard from "/Icons/Dashboard.svg";
+import Group28 from "/src/assets/Images/Group28.svg";
+import Chart2 from "/src/assets/Icons/Chart2.svg";
+import Rocket from "/src/assets/Icons/Rocket.svg";
+import Security from "/src/assets/Icons/Security.svg";
+import Dashboard from "/src/assets/Icons/Dashboard.svg";
 import { Element } from "react-scroll";
 
 const Partner = () => {
@@ -15,10 +15,10 @@ const Partner = () => {
             <img src={Group28} alt="" className="" />
           </div>
           <div className="lg:w-1/2 px-10">
-            <h1 className="text-3xl lg:text-5xl font-bold text-gray-900 mb-4 !leading-normal ">
+            <h1 className="text-xl lg:text-3xl lg:text-5xl font-bold text-gray-900 mb-4 !leading-normal ">
               شريكك المثالي في رحلة التجارة الإلكترونية 🛒
             </h1>
-            <p className="text-lg text-gray-400 mb-8">
+            <p className="text-md lg:text-lg text-gray-400 mb-8">
               نظام SBYP هو شريكك المثالي في رحلة التجارة الإلكترونية. نقدم لك
               منصة متكاملة تجمع بين سهولة الاستخدام والمرونة في الإدارة.
             </p>
@@ -27,7 +27,7 @@ const Partner = () => {
               <div className="flex flex-col items-center lg:items-start">
                 <img src={Chart2} alt="" className="mb-4" />
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900 mb-2">
+                  <h2 className="text-md lg:text-xl font-bold text-gray-900 mb-2">
                     سهولة الاستخدام
                   </h2>
                   <p className="text-gray-400 text-sm">
@@ -38,7 +38,7 @@ const Partner = () => {
               <div className="flex flex-col  items-center lg:items-start">
                 <img src={Rocket} alt="" className="mb-4" />
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900 mb-2">
+                  <h2 className="text-md lg:text-xl font-bold text-gray-900 mb-2">
                     تحليلات دقيقة وفعالة
                   </h2>
                   <p className="text-gray-400 text-sm">
@@ -51,7 +51,7 @@ const Partner = () => {
               <div className="flex flex-col  items-center lg:items-start">
                 <img src={Security} alt="" className="mb-4" />
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900 mb-2">
+                  <h2 className="text-md lg:text-xl font-bold text-gray-900 mb-2">
                     ربط سهل مع التطبيقات
                   </h2>
                   <p className="text-gray-400 text-sm">
@@ -63,7 +63,7 @@ const Partner = () => {
               <div className="flex flex-col  items-center lg:items-start">
                 <img src={Dashboard} alt="" className="mb-4" />
                 <div>
-                  <h2 className="text-xl font-bold text-gray-900 mb-2">
+                  <h2 className="text-md lg:text-xl font-bold text-gray-900 mb-2">
                     دعم فني متواصل
                   </h2>
                   <p className="text-gray-400 text-sm">

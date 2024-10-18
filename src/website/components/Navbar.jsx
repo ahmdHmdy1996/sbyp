@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import logo from "/Images/logo.png";
+import logo from "/src/assets/Images/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { Link as Scroll } from "react-scroll";
 import { Link } from "react-router-dom";
@@ -92,7 +92,7 @@ const Navbar = () => {
                 src="/Avatar.png"
                 alt="avatar"
               />
-              <span>{user ? user.user_name : t("name")}</span>
+              <span>{user ? user.user_name || user.user.user_name : t("name")}</span>
             </div>
             <button
               onClick={handleLogout}

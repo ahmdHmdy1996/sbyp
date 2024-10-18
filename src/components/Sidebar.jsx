@@ -2,25 +2,23 @@ import { useTranslation } from "react-i18next";
 import { IoIosArrowBack } from "react-icons/io";
 import { IoIosArrowForward } from "react-icons/io";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import DashWhite from "/Icons/element-4.svg";
-import DashDark from "/Icons/element-4-1.svg";
-import ArchiveWhite from "/Icons/archive-book.svg";
-import ArchiveDark from "/Icons/archive-book-1.svg";
-import ShopWhite from "/Icons/shop-1.svg";
-import ShopDark from "/Icons/shop-2.svg";
-import BoxWhite from "/Icons/box.svg";
-import BoxDark from "/Icons/box-1.svg";
-import StarWhite from "/Icons/star.svg";
-import StarDark from "/Icons/star-1.svg";
-import WalletWhite from "/Icons/empty-wallet.svg";
-import WalletDark from "/Icons/empty-wallet-1.svg";
-import ShapesWhite from "/Icons/shapes.svg";
-import ShapesDark from "/Icons/shapes-1.svg";
-import TicketWhite from "/Icons/ticket-2.svg";
-import TicketDark from "/Icons/ticket-2-1.svg";
-import Trolley from "/Icons/trolley-01.png";
-import settings from "/Icons/settings.svg";
-import userlogout from "/Icons/logout.svg";
+import DashWhite from "/src/assets/Icons/element-4.svg";
+import DashDark from "/src/assets/Icons/element-4-1.svg";
+import ArchiveWhite from "/src/assets/Icons/archive-book.svg";
+import ArchiveDark from "/src/assets/Icons/archive-book-1.svg";
+import ShopWhite from "/src/assets/Icons/shop-1.svg";
+import ShopDark from "/src/assets/Icons/shop-2.svg";
+import BoxWhite from "/src/assets/Icons/box.svg";
+import BoxDark from "/src/assets/Icons/box-1.svg";
+import StarWhite from "/src/assets/Icons/star.svg";
+import StarDark from "/src/assets/Icons/star-1.svg";
+import ShapesWhite from "/src/assets/Icons/shapes.svg";
+import ShapesDark from "/src/assets/Icons/shapes-1.svg";
+import TicketWhite from "/src/assets/Icons/ticket-2.svg";
+import TicketDark from "/src/assets/Icons/ticket-2-1.svg";
+import Trolley from "/src/assets/Icons/trolley-01.png";
+import settings from "/src/assets/Icons/settings.svg";
+import userlogout from "/src/assets/Icons/logout.svg";
 import { useDispatch } from "react-redux";
 import { logout } from "../redux/reducer/authSlice";
 
@@ -75,8 +73,8 @@ const Sidebar = () => {
     },
     {
       text: t("Wallet"),
-      iconWhite: <img src={WalletWhite} />,
-      iconDark: <img src={WalletDark} />,
+      iconWhite: <img src="/src/assets/Icons/empty-wallet.svg" />,
+      iconDark: <img src="/src/assets/Icons/empty-wallet-1.svg" />,
       path: "/dashboard/wallet",
     },
     {

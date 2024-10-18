@@ -2,20 +2,52 @@
 @tailwind components;
 @tailwind utilities;
 
+[dir="rtl"] {
+  text-align: right;
+}
 
-[dir='rtl'] {
-    text-align: right;
-  }
+html {
+  scroll-behavior: smooth;
+}
+body {
+  font-family: "Almarai", sans-serif;
+}
 
-  html {
-    scroll-behavior: smooth;
+@layer utilities {
+  .paused {
+    animation-play-state: paused;
   }
-  body {
-    font-family: "Almarai", sans-serif;
-  }
+}
+.loader {
+  width: 64px;
+  height: 64px;
+  position: relative;
+  animation: rotate 1.5s ease-in infinite alternate;
+}
+.loader::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  color: #5b21b6;
+  background: currentColor;
+  width: 64px;
+  height: 32px;
+  border-radius: 0 0 50px 50px;
+}
+.loader::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  background: #fff;
+  width: 8px;
+  height: 64px;
+  animation: rotate 1.2s linear infinite alternate-reverse;
+}
 
-  @layer utilities {
-    .paused {
-      animation-play-state: paused;
-    }
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
   }
+}

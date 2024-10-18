@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import Linked from "/Images/Group441.png";
-import logo from "/Images/logo-white.png";
-import eye from "/Icons/eye.png";
-import eyeSlash from "/Icons/eye-slash.png";
+import Linked from "/src/assets/Images/Group441.png";
+import logo from "/src/assets/Images/logo-white (2).png";
+import eye from "/src/assets/Icons/eye.png";
+import eyeSlash from "/src/assets/Icons/eye-slash.png";
 import { motion } from "framer-motion";
-import externalImageUrl from "/Images/Rectangle2757.png";
+import externalImageUrl from "/src/assets/Images/Rectangle2757.png";
 import { Link, useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import { useDispatch, useSelector } from "react-redux";
@@ -20,12 +20,27 @@ const Register = () => {
   const [visibale, setVisibale] = useState(false);
   const full_name = "seller1";
   const lang = "ar";
-  const { loading, error, user } = useSelector((state) => state.auth);
+  const { error, user} = useSelector(
+    (state) => state.auth
+  );
 
   const HandleSubmit = (e) => {
     e.preventDefault();
     dispatch(register({ user_name, email, password, phone, full_name, lang }));
+
+    
+    
   };
+
+  useEffect(() => {
+    if (error) {
+      toast.error(error[0]);
+    }
+    if (user) {
+      // Navigate to login if registration is successful
+      navigate("/dashboard");
+    }
+  }, [error,user]);
 
   return (
     <div className="flex max-h-screen min-h-screen">
@@ -129,9 +144,9 @@ const Register = () => {
               </Link>
             </p>
           </div>
-          {error && <p>{error}</p>}
-          {loading && <p>Loading...</p>}
-          {user && <p>Registration Successful</p>}
+          {/* {error && <p>{toast(error)}</p>} */}
+          {/* {loading && <p>{toast("Loading...")}</p>}
+          {user && <p>{toast("Registration Successful")}</p>} */}
         </div>
       </div>
     </div>

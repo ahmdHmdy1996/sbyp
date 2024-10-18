@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import wallet from "/Icons/empty-wallet-change.svg";
-import bus from "/Icons/bus.svg";
-import deviceLaptop from "/Icons/device-laptop.svg";
-import edit from "/Icons/edit.svg";
-import Shopping from "/Icons/shopping-bag.svg";
-import trash from "/Icons/trash.svg";
-import oneplusPro from "/Images/oneplus-7pro.png";
-import magicMouse from "/Images/magic-mouse.png";
+import deviceLaptop from "/src/assets/Icons/device-laptop.svg";
+import edit from "/src/assets/Icons/edit.svg";
+import Shopping from "/src/assets/Icons/shopping-bag.svg";
+import trash from "/src/assets/Icons/trash.svg";
+import oneplusPro from "/src/assets/Images/oneplus-7pro.png";
+import magicMouse from "/src/assets/Images/magic-mouse.png";
 import { Link } from "react-router-dom";
-import Trolley from "/Icons/trolley-01.png"
+import Trolley from "/src/assets/Icons/trolley-01.png";
+
+
 export const Array = [
   {
     pruductName: "اسم المنتج",
@@ -101,7 +101,7 @@ const Addedproducts = () => {
       <div className="flex justify-between align-center items-center my-3">
         <h3 className="text-2xl font-bold"> منتجات مضافة</h3>
         <div className="flex justify-center">
-          <Link to="/dashboard/add-product" className="bg-menu text-white text-gray-500 rounded-full  px-3 py-3 mx-3 flex min-w-44">
+          <Link to="/dashboard/add-product" className="bg-menu text-white text-gray-500 rounded-full  px-3 py-3 mx-3 flex min-w-32 hover:bg-hover">
             <img src={Trolley} alt="" />
             <p className="mx-2">إضافة منتج </p>
           </Link>

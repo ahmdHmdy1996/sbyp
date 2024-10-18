@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate, useLocation } from 'react-router-dom';
+import DashBoardLayOut from './DashBoardLayOut';
 
-const ProtectedRoute = ({ children }) => {
+const ProtectedRoute = () => {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
   const location = useLocation();
 
@@ -17,7 +18,7 @@ const ProtectedRoute = ({ children }) => {
     );
   }
 
-  return children; // Render the protected component if authenticated
+  return <DashBoardLayOut/>; // Render the protected component if authenticated
 };
 
 export default ProtectedRoute;

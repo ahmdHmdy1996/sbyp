@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import iconpackage from "/Icons/package.png";
-import chart from "/Icons/chart.svg";
-import bubble from "/Icons/bubble.svg";
-import profile from "/Icons/profile.svg";
-import card from "/Icons/card.svg";
-import cardslash from "/Icons/card-slash.svg";
-import free from "/Images/free.png";
-import trueIcon from "/Icons/true.png";
-import spaceRocket from "/Images/space-rocket.png";
-import dollarCoin from "/Images/dollar-coin.png";
-import safeBox from "/Images/safe-box.png";
+import iconpackage from "/src/assets/Icons/package.png";
+import chart from "/src/assets/Icons/chart.svg";
+import bubble from "/src/assets/Icons/bubble.svg";
+import profile from "/src/assets/Icons/profile.svg";
+import card from "/src/assets/Icons/card.svg";
+import cardslash from "/src/assets/Icons/card-slash.svg";
+import free from "/src/assets/Images/free.png";
+import trueIcon from "/src/assets/Icons/true.png";
+import spaceRocket from "/src/assets/Images/space-rocket.png";
+import dollarCoin from "/src/assets/Images/dollar-coin.png";
+import safeBox from "/src/assets/Images/safe-box.png";
 
 const SubscriptionPlan = () => {
   const [isChecked, setIsChecked] = useState(false);

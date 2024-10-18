@@ -1,8 +1,8 @@
 import React from "react";
-import DotVetrical from "/Icons/dots-vertical.svg";
-import Ticket from "/Icons/ticket.svg"
-import Check from "/Icons/check.svg"
-import Clock from "/Icons/clock.svg"
+import DotVetrical from "/src/assets/Icons/dots-vertical.svg";
+import Ticket from "/src/assets/Icons/ticket.svg"
+import Check from "/src/assets/Icons/check.svg"
+import Clock from "/src/assets/Icons/clock.svg"
 
 const SupportMonitor = () => {
   return (

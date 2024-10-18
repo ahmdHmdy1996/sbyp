@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from "react";
-import Linked from "/Images/linkedin-sales.png";
-import logo from "/Images/logo-white.png";
-import eye from "/Icons/eye.png";
-import eyeSlash from "/Icons/eye-slash.png";
+import Linked from "/src/assets/Images/linkedin-sales.png";
+import logo from "/src/assets/Images/logo-white (2).png";
+import eye from "/src/assets/Icons/eye.png";
+import eyeSlash from "/src/assets/Icons/eye-slash.png";
 import { motion } from "framer-motion";
-import externalImageUrl from "/Images/Rectangle2757.png"
+import externalImageUrl from "/src/assets/Images/Rectangle2757.png";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/reducer/authSlice";
+import { toast, ToastContainer } from "react-toastify";
+
 const container = {
   hidden: { opacity: 1, scale: 0 },
   visible: {
@@ -34,31 +36,35 @@ const Login = () => {
   const [identifier, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [visibale, setVisibale] = useState(false);
- 
-  const { loading, error, user } = useSelector((state) => state.auth);
-const lang = "ar"
+
+  const { loading, error, isAuthenticated } = useSelector(
+    (state) => state.auth
+  );
+  const lang = "ar";
   const HandleSubmit = (e) => {
     e.preventDefault();
-    if(!identifier || !password  ){
-      return toast.error("كل الخانات مطلوبة")
+    if (!identifier || !password) {
+      return toast.error("كل الخانات مطلوبة");
     }
-    if(password < 8 ){
-      return toast.error("الباسورد اكثر من 7 حروف او ارقام")
+    if (password < 8) {
+      return toast.error("الباسورد اكثر من 7 حروف او ارقام");
     }
-    
-    dispatch(login({identifier,password,lang}))
+
+    dispatch(login({ identifier, password, lang }));
   };
 
-
-  useEffect(()=>{
-    if(user){
-      navigate("/dashboard")
+  useEffect(() => {
+    if (isAuthenticated){
+      toast("login Success")
     }
-  },[user,navigate ])
-
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    }
+  }, [isAuthenticated, navigate]);
 
   return (
     <div className="flex max-h-screen min-h-screen ">
+      <ToastContainer />
       <div className="w-2/3 relative">
         <img
           src={Linked}
@@ -153,7 +159,6 @@ const lang = "ar"
               </Link>
             </p>
           </div>
-          
         </div>
       </div>
     </div>

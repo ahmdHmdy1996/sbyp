@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Group1939 from "/Images/Group1939.png";
-import Group114 from "/Images/Group114.png";
-import Integrated from "/Icons/Integrated.png";
-import Sync from "/Icons/Sync.png";
-import support from "/Icons/24-support.png";
+import Group1939 from "/src/assets/Images/Group1939.png";
+import Group114 from "/src/assets/Images/Group114.png";
+import Integrated from "/src/assets/Icons/Integrated.png";
+import Sync from "/src/assets/Icons/Sync.png";
+import support from "/src/assets/Icons/24-support.png";
 
 const Manager = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -31,7 +31,7 @@ const Manager = () => {
   return (
     <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen p-4 text-center lg:text-right">
       <div className="w-full lg:w-1/2 p-4">
-        <h1 className="text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
+        <h1 className="text-lg lg:text-3xl lg:text-4xl font-bold text-gray-800 mb-4">
           اجعل تجارتك أكثر ذكاءً مع مميزاتنا المتطورة
         </h1>
         <div className="max-w-md mx-auto">
@@ -48,12 +48,12 @@ const Manager = () => {
               >
                 <div className="flex items-center ">
                   <img src={item.icon} alt="" className="ml-3 " />
-                  <span className="font-bold text-xl">{item.title}</span>
+                  <span className="font-bold text-md lg:text-xl">{item.title}</span>
                 </div>
 
                 {activeIndex === index && (
                   <div className="py-4 px-8 text-start">
-                    <p>{item.content}</p>
+                    <p className="text-sm lg:text-xl">{item.content}</p>
                   </div>
                 )}
               </button>
