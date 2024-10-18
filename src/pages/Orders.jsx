@@ -9,7 +9,7 @@ import oneplusPro from "/src/assets/Images/oneplus-7pro.png";
 import magicMouse from "/src/assets/Images/magic-mouse.png";
 import { Link } from "react-router-dom";
 
-export const Array = [
+export const ordersArray = [
   {
     pruductName: "اسم المنتج",
     brand: "العلامة التجاريه",
@@ -82,7 +82,7 @@ const Orders = () => {
             />
           </div>
           <button className="bg-menu text-white text-gray-500 rounded-full  px-3 py-3 mx-3 flex min-w-52">
-            <img src={require("/src/assets/Icons/empty-wallet-change.svg")} alt="" />
+            <img src="/src/assets/Icons/empty-wallet-change.svg" alt="" />
             <p className="mx-2">اعادة شحن المحفظة</p>
           </button>
           <button className="bg-white text-gray-500 rounded-full  px-3 py-3 mx-3 flex min-w-40">
@@ -143,7 +143,7 @@ const Orders = () => {
             </tr>
           </thead>
           <tbody className="text-start ">
-            {Array.map((item) => (
+            {ordersArray.map((item) => (
               <tr key={item.pruductName} className="border-t text-start">
                 <td className="py-2">
                   <input type="checkbox" />

@@ -16,6 +16,8 @@ const DashBoardLayOut = lazy(()=> import("./pages/DashBoardLayOut"));
 const Addedproducts = lazy(()=> import("./pages/Addedproducts"));
 const Addproduct = lazy(()=> import("./pages/Addproduct"));
 const SubscriptionPlan = lazy(()=> import("./pages/SubscriptionPlan"));
+const Tickets = lazy(()=> import("./pages/Tickets"));
+const AddTicket = lazy(()=> import("./pages/AddTicket"));
 
 // Login and Register
 const Login = lazy(()=> import("./pages/Login"));
@@ -83,6 +85,8 @@ function App() {
         <Route path="added-products" element={<Addedproducts />} />
         <Route path="add-product" element={<Addproduct />} />
         <Route path="subscription-plan" element={<SubscriptionPlan />} />
+        <Route path="tickets" element={<Tickets/>}/>
+        <Route path="add-ticket" element={<AddTicket/>}/>
       </Route>
     </Routes>
   );

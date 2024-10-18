@@ -9,7 +9,7 @@ import oneplusPro from "/src/assets/Images/oneplus-7pro.png";
 import magicMouse from "/src/assets/Images/magic-mouse.png";
 import { Link } from "react-router-dom";
 
-export const Array = [
+export const myProductArray = [
   {
     pruductName: "اسم المنتج",
     brand: "العلامة التجاريه",
@@ -98,7 +98,7 @@ const MyProducts = () => {
             </tr>
           </thead>
           <tbody className="text-start">
-            {Array.map((item) => (
+            {myProductArray.map((item) => (
               <tr key={item.pruductName} className="border-t text-start">
                 <td className="py-2">
                   <input type="checkbox" />

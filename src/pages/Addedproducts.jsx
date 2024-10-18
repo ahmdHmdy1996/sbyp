@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import Trolley from "/src/assets/Icons/trolley-01.png";
 
 
-export const Array = [
+export const productArray = [
   {
     pruductName: "اسم المنتج",
     brand: "العلامة التجاريه",
@@ -152,7 +152,7 @@ const Addedproducts = () => {
             </tr>
           </thead>
           <tbody className="text-start ">
-            {Array.map((item) => (
+            {productArray.map((item) => (
               <tr key={item.pruductName} className="border-t text-start">
                 <td className="py-2">
                   <input type="checkbox" />

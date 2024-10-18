@@ -12,24 +12,65 @@ import uplaod from "/src/assets/Icons/uplaod.png";
 import Add from "/src/assets/Icons/add-circle.png";
 import { useDropzone } from "react-dropzone";
 
-
-
-
 const Addproduct = () => {
-  const [ar_title, setProductName] = useState();
-  const [brand, setSelectedValue] = useState("");
-  const [barcode, setBarcode] = useState("");
-  const [category_id, setCategoryID] = useState("");
-  const [description, setDescription] = useState("");
-
-  const onDrop = (acceptedFiles) => {
-    const file = acceptedFiles[0];
-    console.log(file);
+  const initialFormData = {
+    ar_title: "",
+    en_title: "",
+    store_id: "",
+    category_id: "",
+    description: "",
+    main_image: null,
+    brand: "",
+    sku: "",
+    barcode: "",
+    weight: "",
+    sale_price: "",
+    suggested_price: "",
+    shipping_cost: "",
+    stock: "",
   };
-  const { getRootProps, getInputProps } = useDropzone({ onDrop });
+  const [formData, setFormData] = useState(initialFormData);
 
-  const handleChange = (event) => {
-    setSelectedValue(event.target.value);
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData({
+      ...formData,
+      [name]: type === "checkbox" ? checked : value,
+    });
+  };
+
+  const handleFileChange = (e) => {
+    setFormData({
+      ...formData,
+      main_image: e.target.files[0],
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = new FormData();
+    for (const key in formData) {
+      data.append(key, formData[key]);
+    }
+    // Send data to API
+    // fetch("YOUR_API_ENDPOINT", {
+    //   method: "POST",
+    //   body: data,
+    // })
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log("Success:", data);
+    // Reset form data
+    //     setFormData(initialFormData);
+    //   })
+    //   .catch((error) => {
+    //     console.error("Error:", error);
+    //   });
+
+    //log Data
+    data.forEach((value, key) => {
+      console.log(key, value);
+    });
   };
 
   const [isChecked, setIsChecked] = useState(false);
@@ -40,7 +81,7 @@ const Addproduct = () => {
   return (
     <div className="mt-8">
       <h2 className="text-2xl font-bold">أضافة منتج جديد</h2>
-      <form action="">
+      <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-3 gap-6 mt-6">
           <div className="col-span-2">
             {/* first section */}
@@ -50,25 +91,47 @@ const Addproduct = () => {
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   <div className="col-span-1">
                     <label className="block text-gray-500 mb-2">
-                      اسم المنتج
+                      اسم المنتج بالعربي
                     </label>
                     <input
                       type="text"
+                      name="ar_title"
                       placeholder="ادخل اسم المنتج"
                       className="w-full p-2 border border-gray-200 rounded"
-                      onChange={(e) => {
-                        setProductName(e.target.value);
-                      }}
+                      value={formData.ar_title}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="col-span-1">
+                    <label className="block text-gray-500 mb-2">
+                      Product Name
+                    </label>
+                    <input
+                      type="text"
+                      name="en_title"
+                      placeholder="Enter Product Name"
+                      className="w-full p-2 border border-gray-200 rounded"
+                      value={formData.en_title}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="col-span-1">
+                    <label className="block text-gray-500 mb-2">
+                      الرقم التسلسلي
+                    </label>
+                    <input
+                      type="text"
+                      name="sku"
+                      placeholder="  الرقم التسلسلي"
+                      className="w-full p-2 border border-gray-200 rounded"
+                      value={formData.sku}
+                      onChange={handleChange}
                     />
                   </div>
                   <div className="col-span-1">
                     <label className="block text-gray-500 mb-2">التصنيف</label>
                     <div className="relative">
-                      <select
-                        value={brand}
-                        onChange={handleChange}
-                        className="w-full p-2 border text-gray-500 border-gray-200 rounded appearance-none"
-                      >
+                      <select className="w-full p-2 border text-gray-500 border-gray-200 rounded appearance-none">
                         <option value="">اختر التصنيف</option>
                         <option value="ملابس">ملابس</option>
                         <option value="الكترونيات">الكترونيات</option>
@@ -81,11 +144,11 @@ const Addproduct = () => {
                     </label>
                     <input
                       type="text"
+                      name="barcode"
                       placeholder="باركود المنتج"
                       className="w-full p-2 border border-gray-200 rounded"
-                      onChange={(e) => {
-                        setBarcode(e.target.value);
-                      }}
+                      value={formData.barcode}
+                      onChange={handleChange}
                     />
                   </div>
                   <div className="col-span-1">
@@ -94,11 +157,35 @@ const Addproduct = () => {
                     </label>
                     <input
                       type="text"
+                      name="category_id"
                       placeholder="ادخل رقم الصنف"
                       className="w-full p-2 border border-gray-200 rounded"
-                      onChange={(e) => {
-                        setCategoryID(e.target.value);
-                      }}
+                      value={formData.category_id}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="col-span-1">
+                    <label className="block text-gray-500 mb-2">
+                      اسم البراند
+                    </label>
+                    <input
+                      type="text"
+                      name="brand"
+                      placeholder="ادخل اسم البراند"
+                      className="w-full p-2 border border-gray-200 rounded"
+                      value={formData.brand}
+                      onChange={handleChange}
+                    />
+                  </div>
+                  <div className="col-span-1">
+                    <label className="block text-gray-500 mb-2">الوزن</label>
+                    <input
+                      type="text"
+                      name="weight"
+                      placeholder="ادخل الوزن"
+                      className="w-full p-2 border border-gray-200 rounded"
+                      value={formData.weight}
+                      onChange={handleChange}
                     />
                   </div>
                 </div>
@@ -138,10 +225,10 @@ const Addproduct = () => {
                     </div>
                     <textarea
                       className="w-full h-32 p-2 border border-gray-200 rounded"
+                      name="description"
+                      value={formData.description}
+                      onChange={handleChange}
                       placeholder="هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة. لقد تم توليد هذا النص من مولد النص العربي، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التي يولدها التطبيق."
-                      onChange={(e) => {
-                        setDescription(e.target.value);
-                      }}
                     ></textarea>
                   </div>
                 </div>
@@ -150,29 +237,36 @@ const Addproduct = () => {
             {/* end first section */}
 
             {/* second section */}
-            <div className="bg-white p-6 rounded-3xl  w-full mt-6">
-              <div className="flex justify-between items-center mb-4">
+            <div className="bg-white p-6 rounded-3xl w-full mt-6">
+              <div className="flex justify-between items-center mb-4 ">
                 <span className="text-gray-900 text-lg">صورة المنتج</span>
                 <a href="#" className="text-menu text-sm">
                   إضافة الوسائط من خلال رابط
                 </a>
               </div>
-              <div
-                {...getRootProps({
-                  className:
-                    "border-2 border-dashed border-gray-300 rounded-lg p-6 text-center",
-                })}
-              >
-                <input {...getInputProps()} />
-                <div className="mb-4">
-                  <div className="w-10 h-10 mx-auto mb-2">
-                    <i className="fas fa-upload text-gray-400 text-2xl"></i>
-                  </div>
-                  <p className="text-gray-700">اسحب وأفلت الصورة هنا</p>
-                  <p className="text-gray-500 my-2">أو</p>
-                  <button className="bg-purple-100 text-purple-600 px-4 py-2 rounded">
-                    تصفح الصور
-                  </button>
+              <div className="flex-col bg-white  rounded-xl   mb-6">
+                <div className="border-2 border-dashed border-gray-200 rounded-md p-6 text-center">
+                  <img src={uplaod} alt="" className="m-auto my-5"/>
+                  <p className="text-gray-500 mb-4">اسحب وأفلت الصورة هنا</p>
+                  <span className="text-gray-400 ">أو</span>
+                  <input
+                    type="file"
+                    name="main_image"
+                    onChange={handleFileChange}
+                    className="hidden"
+                    id="fileInput"
+                  />
+                  <label
+                    htmlFor="fileInput"
+                    className="bg-menu mt-5 text-white px-4 py-2 rounded cursor-pointer block max-w-44 m-auto mb-4"
+                  >
+                    تحميل
+                  </label>
+                  <span className="mr-3 text-sm text-gray-300 ">
+                    {formData.main_image
+                      ? formData.main_image.name
+                      : "لا يوجد ملف مرفق"}
+                  </span>
                 </div>
               </div>
             </div>
@@ -224,8 +318,11 @@ const Addproduct = () => {
                   <div className="flex items-center  mt-4 mb-6">
                     <input
                       type="text"
+                      name="stock"
                       placeholder="أدخل الكمية في المخزن"
                       className="border ml-4 p-3 rounded-md flex-grow"
+                      value={formData.stock}
+                      onChange={handleChange}
                     />
                     <button
                       type=""
@@ -254,25 +351,34 @@ const Addproduct = () => {
                 <label className="block text-right mb-1">السعر</label>
                 <input
                   type="text"
+                  name="sale_price"
                   placeholder="ادخل السعر الأصلي للمنتج"
                   className="w-full p-2 border border-gray-300 rounded-md text-right"
+                  value={formData.sale_price}
+                  onChange={handleChange}
                 />
               </div>
               <div className="mb-4">
                 <label className="block text-right mb-1">السعر بعد الخصم</label>
                 <input
                   type="text"
+                  name="suggested_price"
                   placeholder="ادخل السعر بعد الخصم"
                   className="w-full p-2 border border-gray-300 rounded-md text-right"
+                  value={formData.suggested_price}
+                  onChange={handleChange}
                 />
               </div>
               <div className="mb-4">
-                <label className="block text-right mb-1">العمولة</label>
+                <label className="block text-right mb-1">تكلفة الشحن</label>
                 <div className="relative flex items-center">
                   <input
                     type="text"
-                    placeholder="ادخل نسبة العمولة"
+                    name="shipping_cost"
+                    placeholder="ادخل تكلفة الشحن"
                     className="w-full p-3 border border-gray-300 rounded-md text-right"
+                    value={formData.shipping_cost}
+                    onChange={handleChange}
                   />
                   <span className="absolute left-2 ml-2 bg-purple-100 text-menu px-4 py-1 rounded-md">
                     %
@@ -316,6 +422,14 @@ const Addproduct = () => {
             </div>
           </div>
           {/* Ens Fifth Section */}
+          <div className="col-span-3 flex justify-center item-center">
+            <button
+              type="submit"
+              className="px-20 py-3 text-white bg-menu hover:bg-main m-auto"
+            >
+              احفظ المنتج
+            </button>
+          </div>
         </div>
       </form>
     </div>

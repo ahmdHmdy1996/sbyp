@@ -63,6 +63,12 @@ export default {
         500: "#f97316",
         100: "#ffedd5",
       },
+      cyan:{
+        100:"#cffafe",
+        200:"#a5f3fc",
+        400:"#22d3ee",
+        500:"#06b6d4"
+      }
     },
     extend: {
       animation: {

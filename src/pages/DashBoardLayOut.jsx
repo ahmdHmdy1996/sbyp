@@ -3,14 +3,24 @@ import Navbar from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 export default function DashBoardLayOut() {
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+  
   const location = useLocation();
   const navigate = useNavigate()
-  if (!isAuthenticated) {
-    navigate("/login")
-  }
+  useEffect(()=>{
+    
+    if(!isAuthenticated){
+      <Navigate
+        to="/login"
+        replace
+        state={{ from: location }} // Pass the current location to redirect back after login
+      />
+    }
+  },)
+  
   return (
     <>
       <div className="App bg-home flex">
