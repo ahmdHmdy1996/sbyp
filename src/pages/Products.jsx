@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 import Product from "../components/Product";
 import { useTranslation } from "react-i18next";
-import Frame91 from "/Images/Frame91.png";
-import Frame92 from "/Images/Frame92.png";
-import Frame93 from "/Images/Frame93.png";
-import Frame94 from "/Images/Frame94.png";
-import Frame95 from "/Images/Frame95.png";
-import Frame96 from "/Images/Frame96.png";
-import Frame97 from "/Images/Frame97.png";
+import Frame91 from "/src/assets/Images/Frame91.png";
+import Frame92 from "/src/assets/Images/Frame92.png";
+import Frame93 from "/src/assets/Images/Frame93.png";
+import Frame94 from "/src/assets/Images/Frame94.png";
+import Frame95 from "/src/assets/Images/Frame95.png";
+import Frame96 from "/src/assets/Images/Frame96.png";
+import Frame97 from "/src/assets/Images/Frame97.png";
 
-const Array = [
+const productArray = [
   {
     name: "أسم المنتج",
     price: 150,
@@ -145,8 +145,8 @@ const Products = () => {
 
       {/* products catalog */}
       <div className="grid grid-cols-3">
-        {Array.map((item) => (
-          <Product item={item} />
+        {productArray.map((item,index) => (
+          <Product item={item} key={index} />
         ))}
       </div>
     </div>

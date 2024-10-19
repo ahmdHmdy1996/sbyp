@@ -1,10 +1,10 @@
 import React from "react";
-import Receipt from "../../public/Icons/receipt.svg"
-import Tags from "../../public/Icons/tags.svg"
-import TruckTime from "../../public/Icons/truck-time.svg"
-import Shop from "../../public/Icons/shop.svg"
-import TickCircle from "../../public/Icons/tick-circle.svg"
-import Frame93 from "../../public/Images/Frame93.png"
+import Receipt from "/src/assets/Icons/receipt.svg"
+import Tags from "/src/assets/Icons/tags.svg"
+import TruckTime from "/src/assets/Icons/truck-time.svg"
+import Shop from "/src/assets/Icons/shop.svg"
+import TickCircle from "/src/assets/Icons/tick-circle.svg"
+import Frame93 from "/src/assets/Images/Frame93.png"
 
 
 const Product = ({item}) => {
@@ -47,6 +47,7 @@ const Product = ({item}) => {
           </div>
           <img className="max-w-[70px]" src="/Alibaba-Logo.png" alt="" />
         </div>
+        <button className="bg-menu mt-4 text-white py-2 px-4 rounded-full w-[98%] m-auto hover:scale-110">إضافة</button>
       </div>
     </div>
   );

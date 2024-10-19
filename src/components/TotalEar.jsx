@@ -1,8 +1,8 @@
 import React from "react";
-import Bars from "/Images/Bars.png";
-import DotVetrical from "/Icons/dots-vertical.svg";
-import BrandPaypal from "/Icons/brand-paypal.svg";
-import Dollar from "/Icons/currency-dollar.svg";
+import Bars from "/src/assets/Images/Bars.png";
+import DotVetrical from "/src/assets/Icons/dots-vertical.svg";
+import BrandPaypal from "/src/assets/Icons/brand-paypal.svg";
+import Dollar from "/src/assets/Icons/currency-dollar.svg";
 
 const TotalEar = () => {
   return (
@@ -16,7 +16,7 @@ const TotalEar = () => {
       <div className="flex items-center mb-4">
         <span className="text-4xl font-bold">87%</span>
         <span className="text-green-500 text-sm mr-2">
-          25.8% <i className="fas fa-arrow-up"></i>
+          25.8% 
         </span>
       </div>
       <div className="mb-4">

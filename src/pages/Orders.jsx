@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import wallet from "/Icons/empty-wallet-change.svg";
-import bus from "/Icons/bus.svg";
-import deviceLaptop from "/Icons/device-laptop.svg";
-import edit from "/Icons/edit.svg";
-import Shopping from "/Icons/shopping-bag.svg";
-import trash from "/Icons/trash.svg";
-import oneplusPro from "/Images/oneplus-7pro.png";
-import magicMouse from "/Images/magic-mouse.png";
+import bus from "/src/assets/Icons/bus.svg";
+import deviceLaptop from "/src/assets/Icons/device-laptop.svg";
+import edit from "/src/assets/Icons/edit.svg";
+import Shopping from "/src/assets/Icons/shopping-bag.svg";
+import trash from "/src/assets/Icons/trash.svg";
+import oneplusPro from "/src/assets/Images/oneplus-7pro.png";
+import magicMouse from "/src/assets/Images/magic-mouse.png";
 import { Link } from "react-router-dom";
 
-export const Array = [
+export const ordersArray = [
   {
     pruductName: "اسم المنتج",
     brand: "العلامة التجاريه",
@@ -50,8 +49,8 @@ const Orders = () => {
   const language = localStorage.getItem("language");
 
   return (
-    <div>
-      <div className="flex justify-between align-center items-center my-3">
+    <div className="">
+      <div className="flex justify-between align-center items-center my-3 ">
         <h3 className="text-2xl font-bold"> الطلبات</h3>
         <div className="flex justify-center">
           <div className="relative">
@@ -83,7 +82,7 @@ const Orders = () => {
             />
           </div>
           <button className="bg-menu text-white text-gray-500 rounded-full  px-3 py-3 mx-3 flex min-w-52">
-            <img src={wallet} alt="" />
+            <img src="/src/assets/Icons/empty-wallet-change.svg" alt="" />
             <p className="mx-2">اعادة شحن المحفظة</p>
           </button>
           <button className="bg-white text-gray-500 rounded-full  px-3 py-3 mx-3 flex min-w-40">
@@ -144,7 +143,7 @@ const Orders = () => {
             </tr>
           </thead>
           <tbody className="text-start ">
-            {Array.map((item) => (
+            {ordersArray.map((item) => (
               <tr key={item.pruductName} className="border-t text-start">
                 <td className="py-2">
                   <input type="checkbox" />

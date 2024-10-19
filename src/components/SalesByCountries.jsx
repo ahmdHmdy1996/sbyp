@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import ChevronUp from "/Icons/chevron-up.svg";
-import ChevronDown from "/Icons/chevron-down.png";
-import DotVetrical from "/Icons/dots-vertical.svg";
+import ChevronUp from "/src/assets/Icons/chevron-up.svg";
+import ChevronDown from "/src/assets/Icons/chevron-down.png";
+import DotVetrical from "/src/assets/Icons/dots-vertical.svg";
 
 const SalesByCountries = () => {
   const { t, i18n } = useTranslation();

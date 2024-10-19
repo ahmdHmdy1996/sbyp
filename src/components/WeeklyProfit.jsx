@@ -1,8 +1,8 @@
 import React from "react";
-import BrandPayPal from "/Icons/brand-paypal-1.svg";
-import ChartPie from "/Icons/chart-pie-2.svg";
-import DotVetrical from "/Icons/dots-vertical.svg";
-import Dollar from "/Icons/currency-dollar-1.svg";
+import BrandPayPal from "/src/assets/Icons/brand-paypal-1.svg";
+import ChartPie from "/src/assets/Icons/chart-pie-2.svg";
+import DotVetrical from "/src/assets/Icons/dots-vertical.svg";
+import Dollar from "/src/assets/Icons/currency-dollar-1.svg";
 
 const WeeklyProfit = () => {
   return (
