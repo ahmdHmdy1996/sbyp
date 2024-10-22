@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "/src/assets/Images/logo-white.png";
+import logo from "/src/assets/Images/logo-white (2).png";
 import linkedin from "/src/assets/Images/akar-icons_linkedin-fill.png";
 import twitter from "/src/assets/Images/akar-icons_twitter-fill.png";
 import instagram from "/src/assets/Images/bx_bxl-instagram-alt.png";
@@ -31,7 +31,7 @@ const Footer = () => {
             </div>
             <div>
               <h2 className="text-xl font-bold mb-4">القائمة</h2>
-              <ul className="text-md text-gray-300  flex space-x-5 space-x-reverse lg:flex-col lg:space-x-0">
+              <ul className="xs:text-xs sm:text-md lg:text-lg text-gray-300  flex justify-center xs:space-x-3 sm:space-x-5 lg:space-x-0 xs:space-x-reverse sm:space-x-reverse lg:space-x-reverse lg:flex-col  m-auto w-full">
                 <Scroll to="join" className="mb-2 hover:text-white">
                   <a href="#">كيف نعمل؟</a>
                 </Scroll>

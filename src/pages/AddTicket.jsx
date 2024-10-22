@@ -1,14 +1,26 @@
-import React, { useState } from "react";
+import axios from "axios";
+import { use } from "i18next";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const AddTicket = () => {
+  const [access_token, setAccessToken] = useState();
+  const [store, setStore] = useState([]);
+  const { user } = useSelector((state) => state.auth);
+  const [selectedObject, setSelectedObject] = useState();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
+    lang: "ar",
     name: "",
     phone: "",
     email: "",
-    storeName: "",
+    store_name: "",
     categories: [],
     description: "",
-    file: null,
+    document: null,
   });
 
   const handleChange = (e) => {
@@ -27,49 +39,85 @@ const AddTicket = () => {
       }));
     }
   };
-
+  const handleSelect = (e) => {
+    const selected = store.find((el) => Number(e.target.value) === el.id);
+    setSelectedObject(selected); // This updates the state
+    console.log(selected); // Log the selected store directly
+  };
   const handleFileChange = (e) => {
     setFormData((prevData) => ({
       ...prevData,
-      file: e.target.files[0],
+      document: e.target.files[0],
     }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = new FormData();
+
+    if (selectedObject) {
+      data.append("store_name", selectedObject.store_name);
+      data.append("store_id", selectedObject.id);
+    }
+
+    // Other form data
     data.append("name", formData.name);
     data.append("phone", formData.phone);
     data.append("email", formData.email);
-    data.append("storeName", formData.storeName);
     data.append("categories", formData.categories);
     data.append("description", formData.description);
-    if (formData.file) {
-      data.append("file", formData.file);
+    data.append("user_id", user.id);
+    data.append("problem_type", "product");
+    data.append("location", "cairo");
+    data.append("lang", "ar");
+
+    if (formData.document) {
+      data.append("document", formData.document);
     }
 
-    // fetch("YOUR_API_ENDPOINT", {
-    //   method: "POST",
-    //   body: data,
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log("Success:", data);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error:", error);
-    //   });
-
-
-    // log data 
-    // data.forEach((value, key) => {
-    //   console.log(key, value);
-    // });
+    axios
+      .post("https://back.sbyp-sa.com/api/technical-support", data, {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      })
+      .then((response) => {
+        navigate("/dashboard/tickets");
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setAccessToken(JSON.parse(token));
+
+    if (token) {
+      try {
+        axios
+          .get("https://back.sbyp-sa.com/api/stores", {
+            headers: {
+              Authorization: `Bearer ${JSON.parse(token)}`,
+            },
+          })
+          .then((res) => {
+            setStore(res.data.data);
+            console.log(res.data.data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }, [access_token]);
 
   return (
     <div className="w-full">
       <h1 className="text-2xl font-bold my-6 text-right">تذكرة جديدة</h1>
+
       <div className="bg-white p-8 rounded-3xl shadow-md w-full">
         <form onSubmit={handleSubmit}>
           <div className="grid grid-cols-2 gap-6">
@@ -123,14 +171,21 @@ const AddTicket = () => {
             </div>
             <div>
               <label className="block text-gray-700 mb-2">اسم المتجر</label>
-              <input
+              <select
                 type="text"
-                name="storeName"
+                name="store-name"
                 placeholder="اسم المتجر"
                 className="w-full p-2 border rounded-md"
-                value={formData.storeName}
-                onChange={handleChange}
-              />
+                onChange={handleSelect}
+              >
+                <option>اختر اسم المتجر</option>
+
+                {store.map((e) => (
+                  <option key={e.id} value={e.id}>
+                    {e.store_name}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
           <div className="mt-6">
@@ -150,7 +205,9 @@ const AddTicket = () => {
                 تحميل ملف
               </label>
               <span className="mr-3 text-sm text-gray-500 ">
-                {formData.file ? formData.file.name : "لا يوجد ملف مرفق"}
+                {formData.document
+                  ? formData.document.name
+                  : "لا يوجد ملف مرفق"}
               </span>
             </div>
           </div>
@@ -192,9 +249,12 @@ const AddTicket = () => {
           <div className="mt-6">
             <label className="block text-gray-700 mb-2">توضيح المشكلة</label>
             <textarea
-              name="issue_description"
+              name="description"
               placeholder="اكتب توضيح المشكلة، إن وجدت..."
               className="w-full p-2 border rounded-md h-32"
+              value={formData.description}
+              onChange={handleChange}
+              required
             ></textarea>
           </div>
           <div className="mt-6 flex justify-end">

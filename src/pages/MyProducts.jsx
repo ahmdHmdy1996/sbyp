@@ -98,8 +98,8 @@ const MyProducts = () => {
             </tr>
           </thead>
           <tbody className="text-start">
-            {myProductArray.map((item) => (
-              <tr key={item.pruductName} className="border-t text-start">
+            {myProductArray.map((item,index) => (
+              <tr key={index} className="border-t text-start">
                 <td className="py-2">
                   <input type="checkbox" />
                 </td>

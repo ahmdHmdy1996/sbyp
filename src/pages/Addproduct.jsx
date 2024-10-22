@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import IconButton from "/src/assets/Icons/IconButton.png";
 import IconButtonlast from "/src/assets/Icons/IconButtonlast.png";
 import IconCenter from "/src/assets/Icons/IconCenter.png";
@@ -10,29 +10,37 @@ import IconRight from "/src/assets/Icons/IconRight.png";
 import IconUnderLine from "/src/assets/Icons/IconUnderLine.png";
 import uplaod from "/src/assets/Icons/uplaod.png";
 import Add from "/src/assets/Icons/add-circle.png";
-import { useDropzone } from "react-dropzone";
-
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 const Addproduct = () => {
+  const [categories, setCategories] = useState();
+  const [selectedObject, setSelectedObject] = useState({});
+  const [access_token, setAccessToken] = useState();
+  const navigate = useNavigate();
+  const [size, setSize] = useState();
+
   const initialFormData = {
     ar_title: "",
     en_title: "",
-    store_id: "",
-    category_id: "",
+    store_id: "2",
     description: "",
     main_image: null,
     brand: "",
-    sku: "",
     barcode: "",
-    weight: "",
     sale_price: "",
     suggested_price: "",
     shipping_cost: "",
     stock: "",
+    attributes: {
+      1: [],
+    },
+    lang: "ar",
   };
   const [formData, setFormData] = useState(initialFormData);
 
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
+    const { name, value, type, checked, select } = e.target;
     setFormData({
       ...formData,
       [name]: type === "checkbox" ? checked : value,
@@ -48,39 +56,101 @@ const Addproduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const data = new FormData();
-    for (const key in formData) {
-      data.append(key, formData[key]);
-    }
-    // Send data to API
-    // fetch("YOUR_API_ENDPOINT", {
-    //   method: "POST",
-    //   body: data,
-    // })
-    //   .then((response) => response.json())
-    //   .then((data) => {
-    //     console.log("Success:", data);
-    // Reset form data
-    //     setFormData(initialFormData);
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error:", error);
-    //   });
 
-    //log Data
-    data.forEach((value, key) => {
-      console.log(key, value);
+    const data = new FormData();
+
+    // Ensure that the size value is included in attributes
+    if (size) {
+      formData.attributes[1].push(size);
+    }
+
+    data.append("ar_title", formData.ar_title);
+    data.append("en_title", formData.en_title);
+    data.append("description", formData.description);
+    data.append("brand", formData.brand);
+    data.append("barcode", formData.barcode);
+    data.append("sale_price", formData.sale_price);
+    data.append("suggested_price", formData.suggested_price);
+    data.append("shipping_cost", formData.shipping_cost);
+    data.append("stock", formData.stock);
+
+    // Append each attribute separately in the expected array format
+    Object.entries(formData.attributes).forEach(([key, values]) => {
+      values.forEach((value) => {
+        data.append(`attributes[${key}][]`, value); // Array format for each attribute
+      });
     });
+
+    data.append("lang", "ar");
+    data.append("category_id", selectedObject.id);
+    data.append("store_id", 1);
+    data.append("sku", "a145");
+    data.append("weight", 10);
+
+    if (formData.main_image) {
+      data.append("main_image", formData.main_image);
+    }
+
+    // Send data to API
+    axios
+      .post("https://back.sbyp-sa.com/api/products", data, {
+        headers: {
+          Authorization: `Bearer ${JSON.parse(access_token)}`,
+        },
+      })
+      .then((response) => {
+        console.log(response.data.message);
+        toast.success(response.data.message);
+        navigate("/dashboard/added-products");
+      })
+      .catch((error) => {
+        toast.error(error.response.data.message);
+        if(error.response.data.errors){
+          error.response.data.errors.map((e)=>toast.error(e)
+          )
+        }
+      });
   };
 
   const [isChecked, setIsChecked] = useState(false);
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
+  const handleSelect = (e) => {
+    const currentCategory = categories.map((el) => {
+      console.log();
+      if (Number(e.target.value) === el.id) setSelectedObject(el);
+    });
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setAccessToken(token);
+    if (token) {
+      try {
+        axios
+          .get("https://back.sbyp-sa.com/api/categories", {
+            headers: {
+              Authorization: `Bearer ${JSON.parse(token)}`,
+            },
+          })
+          .then((res) => {
+            setCategories(res.data.data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  }, []);
 
   return (
     <div className="mt-8">
+      <ToastContainer />
       <h2 className="text-2xl font-bold">أضافة منتج جديد</h2>
+
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-3 gap-6 mt-6">
           <div className="col-span-2">
@@ -115,26 +185,22 @@ const Addproduct = () => {
                       onChange={handleChange}
                     />
                   </div>
-                  <div className="col-span-1">
-                    <label className="block text-gray-500 mb-2">
-                      الرقم التسلسلي
-                    </label>
-                    <input
-                      type="text"
-                      name="sku"
-                      placeholder="  الرقم التسلسلي"
-                      className="w-full p-2 border border-gray-200 rounded"
-                      value={formData.sku}
-                      onChange={handleChange}
-                    />
-                  </div>
+
                   <div className="col-span-1">
                     <label className="block text-gray-500 mb-2">التصنيف</label>
                     <div className="relative">
-                      <select className="w-full p-2 border text-gray-500 border-gray-200 rounded appearance-none">
+                      <select
+                        name="category_name"
+                        className="w-full p-2 border text-gray-500 border-gray-200 rounded appearance-none"
+                        // value={formData.category_name}
+                        onChange={handleSelect}
+                      >
                         <option value="">اختر التصنيف</option>
-                        <option value="ملابس">ملابس</option>
-                        <option value="الكترونيات">الكترونيات</option>
+                        {categories?.map((e) => (
+                          <option key={e.id} value={e.id}>
+                            {e.ar_title}
+                          </option>
+                        ))}
                       </select>
                     </div>
                   </div>
@@ -151,19 +217,7 @@ const Addproduct = () => {
                       onChange={handleChange}
                     />
                   </div>
-                  <div className="col-span-1">
-                    <label className="block text-gray-500 mb-2">
-                      رقم الصنف
-                    </label>
-                    <input
-                      type="text"
-                      name="category_id"
-                      placeholder="ادخل رقم الصنف"
-                      className="w-full p-2 border border-gray-200 rounded"
-                      value={formData.category_id}
-                      onChange={handleChange}
-                    />
-                  </div>
+
                   <div className="col-span-1">
                     <label className="block text-gray-500 mb-2">
                       اسم البراند
@@ -174,17 +228,6 @@ const Addproduct = () => {
                       placeholder="ادخل اسم البراند"
                       className="w-full p-2 border border-gray-200 rounded"
                       value={formData.brand}
-                      onChange={handleChange}
-                    />
-                  </div>
-                  <div className="col-span-1">
-                    <label className="block text-gray-500 mb-2">الوزن</label>
-                    <input
-                      type="text"
-                      name="weight"
-                      placeholder="ادخل الوزن"
-                      className="w-full p-2 border border-gray-200 rounded"
-                      value={formData.weight}
                       onChange={handleChange}
                     />
                   </div>
@@ -246,7 +289,7 @@ const Addproduct = () => {
               </div>
               <div className="flex-col bg-white  rounded-xl   mb-6">
                 <div className="border-2 border-dashed border-gray-200 rounded-md p-6 text-center">
-                  <img src={uplaod} alt="" className="m-auto my-5"/>
+                  <img src={uplaod} alt="" className="m-auto my-5" />
                   <p className="text-gray-500 mb-4">اسحب وأفلت الصورة هنا</p>
                   <span className="text-gray-400 ">أو</span>
                   <input
@@ -296,8 +339,13 @@ const Addproduct = () => {
                   </label>
                   <input
                     type="text"
+                    name="size"
                     placeholder="ادخل المقاسات المتاحة"
                     className="w-full border border-gray-200 rounded-lg p-2 text-gray-500"
+                    id="1"
+                    onChange={(e) => {
+                      setSize(e.target.value);
+                    }}
                   />
                 </div>
               </div>
@@ -343,7 +391,7 @@ const Addproduct = () => {
             {/* end fourth section */}
           </div>
 
-          {/* Fifth Section */}
+          {/* left Section */}
           <div className="col-spn-1">
             <div className="bg-white p-6 rounded-3xl ">
               <h2 className="text-xl font-semibold mb-4 text-right">التسعير</h2>
@@ -380,9 +428,9 @@ const Addproduct = () => {
                     value={formData.shipping_cost}
                     onChange={handleChange}
                   />
-                  <span className="absolute left-2 ml-2 bg-purple-100 text-menu px-4 py-1 rounded-md">
+                  {/* <span className="absolute left-2 ml-2 bg-purple-100 text-menu px-4 py-1 rounded-md">
                     %
-                  </span>
+                  </span> */}
                 </div>
               </div>
               <div className="mb-4 flex items-center ">

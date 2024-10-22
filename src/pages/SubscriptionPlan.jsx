@@ -10,13 +10,101 @@ import trueIcon from "/src/assets/Icons/true.png";
 import spaceRocket from "/src/assets/Images/space-rocket.png";
 import dollarCoin from "/src/assets/Images/dollar-coin.png";
 import safeBox from "/src/assets/Images/safe-box.png";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 const SubscriptionPlan = () => {
+  const navigate = useNavigate();
+
   const [isChecked, setIsChecked] = useState(false);
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
+
+  
+
+  const plansArray = [
+    {
+      id:"p1",
+      title: "المجانية",
+      price: 0,
+      description: "تناسب جميع الأعمال ",
+      features: ["احصائيات ومعلومات عن المبيعات"],
+      buttonText: "باقتك الحالية",
+      image: safeBox,
+    },
+    {
+      id:"p2",
+      title: "الأساسية",
+      price: "99",
+      priceYearly: "990",
+      description: "مناسبة للأعمال الصغيرة والمتوسطة",
+      features: [
+        "شحن المنتجات بواسطة j&t , مخازن اكسبرس",
+        "تغليف مجاني لأول ٣٠٠ شحنة شهرياً",
+        "احصائيات ومعلومات عن المبيعات",
+        "إمكانية إضافة مستخدمين إلى حسابك بصلاحيات محدودة",
+      ],
+      person: 1,
+      buttonText: "اشترك الآن",
+      image: safeBox,
+    },
+    {
+      id:"p3",
+      title: "تمكين",
+      description: "مناسبة للتجار المبتدئين",
+      price: "299",
+      priceYearly: "2990",
+      features: [
+        "العدد المسموح لرفع المنتجاج اليا",
+        "شحن المنتجات بواسطة j&t , مخازن اكسبرس",
+        "تغليف مجاني لأول ٣٠٠ شحنة شهرياً",
+        "احصائيات ومعلومات عن المبيعات",
+        "إمكانية إضافة مستخدمين إلى حسابك بصلاحيات محدودة",
+        "الجرد الآلي للمنتجات",
+        "الدفع عند الاستلام وفق الشروط",
+      ],
+      person: 3,
+      count: 2500,
+      buttonText: "اشترك الآن",
+      image: spaceRocket,
+    },
+    {
+      id:"p4",
+      title: "الأعمال",
+      description: "مناسبة للأعمال الكبيرة والشركات",
+      price: "599",
+      priceYearly: "5990",
+      features: [
+        "العدد المسموح لرفع المنتجات: 2500",
+        "شحن المنتجات بواسطة j&t , مخازن اكسبرس",
+        "تغليف مجاني لأول ٣٠٠ شحنة شهرياً",
+        "احصائيات ومعلومات عن المبيعات",
+        "إمكانية إضافة مستخدمين إلى حسابك بصلاحيات محدودة",
+        "الجرد الآلي للمنتجات",
+        "الدفع عند الاستلام وفق الشروط",
+        "مكانية تخصيص شركة شحن خاصة بالتاجر وإصدار البوليصات من خلاله",
+        "إمكانية تزويدنا بالتغليف الخاص بالمتجر وتخزينه لدينا برسوم إضافية",
+        "إمكانية تخزين المنتجات الخاصة بالتاجر في مخازن برسوم إضافية",
+      ],
+      person: 10,
+      count: 2500,
+      buttonText: "اشترك الآن",
+      image: dollarCoin,
+    },
+  ];
+  const handleClick = (e) => {
+    const current_plan_id = e.target.value;
+    plansArray.map((item)=>{
+      if(item.id === current_plan_id){
+        console.log(item);
+        navigate('/dashboard/subscription-plan/subscripe',{state:item})
+        }
+     })
+    
+   
+  };
+
   return (
     <div className="mt-6">
       <h1 className="font-bold text-2xl">خطة الإشتراك</h1>
@@ -115,7 +203,7 @@ const SubscriptionPlan = () => {
 
         <div className=" flex flex-wrap justify-center space-x-4 w-full min-h-[768px]">
           {/* first Plan */}
-          <div className="relative bg-white rounded-lg shadow-lg p-6 min-w-60 max-w-60 mb-5 ">
+          <div className="relative bg-white rounded-lg shadow-lg p-6 min-w-64 max-w-64 mb-5 ">
             <img
               src={free}
               alt="Money bag icon"
@@ -134,13 +222,17 @@ const SubscriptionPlan = () => {
               </p>
               <img src={trueIcon} alt="" className="max-w-4 max-h-4" />
             </div>
-            <button className=" absolute bottom-5 right-2 bg-green-100 text-green-500 py-2 px-4 rounded w-[90%]">
-             باقتك الحالية
+            <button
+              value={"p1"}
+              onClick={handleClick}
+              className=" absolute bottom-5 right-2 bg-green-100 text-green-500 py-2 px-4 rounded w-[90%]"
+            >
+              باقتك الحالية
             </button>
           </div>
 
           {/* second Plan */}
-          <div className="relative bg-white rounded-lg shadow-lg p-6 min-w-60 max-w-60 border-2 border-menu mb-5 min-h-[800px]">
+          <div className="relative bg-white rounded-lg shadow-lg p-6 min-w-64 max-w-64 border-2 border-menu mb-5 min-h-[800px]">
             <div className="relative">
               <img
                 src={safeBox}
@@ -153,8 +245,7 @@ const SubscriptionPlan = () => {
             </div>
             <h2 className="text-xl font-bold mb-2"> الأساسية </h2>
             <p className="text-gray-400 mb-4">
-              {" "}
-              مناسبة للأعمال الصغيرة والمتوسطة{" "}
+              مناسبة للأعمال الصغيرة والمتوسطة
             </p>
 
             {isChecked ? (
@@ -175,40 +266,40 @@ const SubscriptionPlan = () => {
 
             <div className="flex justify-between items-center mb-3 text-start ">
               <p className="text-gray-400 text-xs">
-                {" "}
-                شحن المنتجات بواسطة j&t , مخازن اكسبرس{" "}
+                شحن المنتجات بواسطة j&t , مخازن اكسبرس
               </p>
               <img src={trueIcon} alt="" className="max-w-4 max-h-4" />
             </div>
             <div className="flex justify-between items-center mb-3 text-start ">
               <p className="text-gray-400 text-xs">
-                {" "}
-                غليف مجاني لأول ٣٠٠ شحنة شهرياً{" "}
+                تغليف مجاني لأول ٣٠٠ شحنة شهرياً
               </p>
               <img src={trueIcon} alt="" className="max-w-4 max-h-4" />
             </div>
             <div className="flex justify-between items-center mb-3 text-start ">
               <p className="text-gray-400 text-xs">
-                {" "}
                 احصائيات ومعلومات عن المبيعات
               </p>
               <img src={trueIcon} alt="" className="max-w-4 max-h-4" />
             </div>
             <div className="flex justify-between items-center mb-3 text-start ">
               <p className="text-gray-400 text-xs">
-                {" "}
                 إمكانية إضافة مستخدمين إلى حسابك بصلاحيات محدودة
               </p>
               <p className="text-sm mx-1"> 1 </p>
             </div>
 
-            <button className="absolute bottom-5 right-2 bg-menu text-white py-2 px-4 rounded w-[90%] ">
+            <button
+              value={"p2"}
+              onClick={handleClick}
+              className="absolute bottom-5 right-2 bg-menu text-white py-2 px-4 rounded w-[90%] "
+            >
               اشترك الآن
             </button>
           </div>
 
           {/* third Plan */}
-          <div className="relative bg-white rounded-lg shadow-lg p-6 min-w-60 max-w-60 mb-5 min-h-[800px]">
+          <div className="relative bg-white rounded-lg shadow-lg p-6 min-w-64 max-w-64 mb-5 min-h-[800px]">
             <img
               src={spaceRocket}
               alt="Rocket icon"
@@ -279,20 +370,24 @@ const SubscriptionPlan = () => {
               <img src={trueIcon} alt="" className="max-w-4 max-h-4" />
             </div>
 
-            <button className="absolute bottom-5 right-2 bg-gray-200 text-menu py-2 px-4 rounded w-[90%]">
+            <button
+              value={"p3"}
+              onClick={handleClick}
+              className="absolute bottom-5 right-2 bg-gray-200 text-menu py-2 px-4 rounded w-[90%]"
+            >
               اشترك الآن
             </button>
           </div>
 
           {/* fourth Plan */}
-          <div className="relative bg-white rounded-lg shadow-lg p-6 min-w-60 max-w-60 mb-5 min-h-[800px]">
+          <div className="relative bg-white rounded-lg shadow-lg p-6 min-w-64 max-w-64 mb-5 min-h-[800px]">
             <img
               src={dollarCoin}
               alt="Rocket icon"
-              className="mx-auto mb-4 max-w-24"
+              className="mx-auto mb-3 max-w-24"
             />
             <h2 className="text-xl font-bold mb-2"> الأعمال</h2>
-            <p className="text-gray-400 mb-10">
+            <p className="text-gray-400 mb-9 text-sm">
               مناسبة للأعمال الكبيرة والشركات
             </p>
 
@@ -381,7 +476,11 @@ const SubscriptionPlan = () => {
               </p>
               <img src={trueIcon} alt="" className="max-w-4 max-h-4" />
             </div>
-            <button className="absolute bottom-5 right-2 bg-gray-200 text-menu py-2 px-4 rounded w-full">
+            <button
+              value={"p4"}
+              onClick={handleClick}
+              className="absolute bottom-5 right-2 bg-gray-200 text-menu py-2 px-4 rounded w-full"
+            >
               اشترك الآن
             </button>
           </div>

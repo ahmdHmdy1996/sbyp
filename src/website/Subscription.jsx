@@ -8,28 +8,27 @@ import falseIcon from "/Icons/false.png";
 import free from "/Images/free.png";
 import { LuDot } from "react-icons/lu";
 import ScrollToTop from "./components/ScrollToTop";
-
+import { Link, useNavigate } from "react-router-dom";
 
 const Subscription = () => {
   const [isChecked, setIsChecked] = useState(false);
-  
+ 
 
-  
-
+ 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
   return (
-    <div className="container mx-auto p-4 text-center">
-       <ScrollToTop/>
+    <div className="lg:container mx-auto p-4 text-center">
+      <ScrollToTop />
       <h1 className="text-3xl font-bold mb-2">تفاصيل الباقات</h1>
-      <p className="text-gray-400 px-5 mb-4 w-1/3 m-auto">
+      <p className="text-gray-400 px-5 mb-4 md:w-1/3 m-auto">
         تتضمن جميع الخطط أكثر من ميزة مقدمة لتعزيز منتجاتك. اختر الخطة الأفضل
         لتلبية احتياجاتك.
       </p>
       <div className="flex  justify-center items-center mb-8">
         <span className="text-gray-600 mr-2">شهري</span>
-        <div className="flex flex items-center">
+        <div className="flex items-center">
           <label className="inline-flex relative items-center cursor-pointer mx-2">
             <input
               type="checkbox"
@@ -53,9 +52,9 @@ const Subscription = () => {
         <span className="text-gray-600 ml-2">سنوي</span>
       </div>
 
-      <div className=" flex flex-wrap justify-center space-x-4 w-full min-h-[768px]">
+      <div className=" grid grid-cols-1 md:grid-cols-2 place-items-center  lg:grid-cols-4 justify-center  space-x-4 w-full min-h-[768px]">
         {/* first Plan */}
-        <div className="relative bg-white rounded-lg shadow-lg p-6 min-w-60 max-w-72 mb-5 ">
+        <div className="relative bg-white rounded-lg shadow-lg p-6 min-w-60 max-w-72 mb-5 min-h-[768px]">
           <img
             src={free}
             alt="Money bag icon"
@@ -142,9 +141,9 @@ const Subscription = () => {
             <p className="text-sm mx-1"> 1 </p>
           </div>
 
-          <button className="absolute bottom-5 right-2 bg-menu text-white py-2 px-4 rounded w-[90%] ">
+          <Link to="/register"  className="absolute bottom-5 right-2 bg-menu text-white py-2 px-4 rounded w-[90%] ">
             اشترك الآن
-          </button>
+          </Link>
         </div>
 
         {/* third Plan */}
@@ -219,9 +218,9 @@ const Subscription = () => {
             <img src={trueIcon} alt="" className="max-w-4 max-h-4" />
           </div>
 
-          <button className="absolute bottom-5 right-2 bg-gray-200 text-menu py-2 px-4 rounded w-[90%]">
+          <Link to="/register"  className="absolute bottom-5 right-2 bg-gray-200 text-menu py-2 px-4 rounded w-[90%]">
             اشترك الآن
-          </button>
+          </Link>
         </div>
 
         {/* fourth Plan */}
@@ -237,7 +236,7 @@ const Subscription = () => {
           {isChecked ? (
             <>
               <p className="text-4xl font-bold text-menu ">
-              5990<span className="text-lg text-gray-400 ">رس / سنوياً</span>
+                5990<span className="text-lg text-gray-400 ">رس / سنوياً</span>
               </p>
               <p className="text-gray-400 mb-10 text-xs">599 رس شهرياً</p>
             </>
@@ -248,7 +247,7 @@ const Subscription = () => {
               </p>
               <p className="text-gray-400 mb-10 text-xs">5990 رس سنوياً</p>
             </>
-          )}    
+          )}
 
           <div className="flex justify-between items-center mb-3 text-start">
             <p className="text-gray-400 text-xs ">
@@ -317,9 +316,9 @@ const Subscription = () => {
             </p>
             <img src={trueIcon} alt="" className="max-w-4 max-h-4" />
           </div>
-          <button className="absolute bottom-5 right-2 bg-gray-200 text-menu py-2 px-4 rounded w-full">
+          <Link to="/register" className="absolute bottom-5 right-3 bg-gray-200 text-menu py-2 px-4 rounded w-full max-w-64 ">
             اشترك الآن
-          </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -11,7 +11,7 @@ import {
 } from "../redux/reducer/languageSlice";
 import MobileMenu from "./MobileMenu";
 import { MdMenu } from "react-icons/md";
-import { useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 
 
@@ -54,7 +54,8 @@ const Navbar = () => {
       <div className="flex lg:hidden flex justify-between  w-full items-center mb-4">
         <MdMenu className="text-4xl cursor-pointer bg-menu text-white p-1 rounded-xl " onClick={()=>setOpen(!open)}/>
         <MobileMenu open={open}/>
-        <div
+
+        <Link to="/dashboard/profile"
           className={`flex  w-[11rem] h-[3rem] rounded-full text-white bg-menu  relative justify-center items-center content-center ${
             language == "en" ? "pl-5" : "pr-5"
           } `}
@@ -66,8 +67,8 @@ const Navbar = () => {
             src="/Avatar.png"
             alt="avatar"
           />
-          <span> </span>
-        </div>
+          <span>{user ? user.user_name || user.user.user_name: t("name")} </span>
+        </Link>
       </div>
 
       <div className="flex w-full justify-between lg:justify-center">
@@ -136,7 +137,7 @@ const Navbar = () => {
             <HiOutlineBell />
           </li>
         </ul>
-        <div
+        <Link to="/dashboard/profile"
           className={`hidden  w-[13rem] h-[3rem] rounded-full text-white bg-menu lg:flex relative justify-center items-center content-center ${
             language == "en" ? "pl-5 ml-3" : "pr-5 mr-3"
           } `}
@@ -150,7 +151,7 @@ const Navbar = () => {
             alt="avatar"
           />
           <span>{user ? user.user_name || user.user.user_name: t("name")}</span>
-        </div>
+        </Link>
       </div>
     </nav>
   );

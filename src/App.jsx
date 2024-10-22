@@ -7,30 +7,34 @@ import { setUser } from "./redux/reducer/authSlice";
 import "react-toastify/ReactToastify.css";
 
 // Dashboard import
-const Dashboard = lazy(()=> import("./pages/Dashboard"));
-const Products = lazy(()=> import("./pages/Products"));
-const MyProducts = lazy(()=> import("./pages/MyProducts"));
-const EditProduct = lazy(()=> import("./pages/EditProduct"));
-const Orders = lazy(()=> import("./pages/Orders"));
-const DashBoardLayOut = lazy(()=> import("./pages/DashBoardLayOut"));
-const Addedproducts = lazy(()=> import("./pages/Addedproducts"));
-const Addproduct = lazy(()=> import("./pages/Addproduct"));
-const SubscriptionPlan = lazy(()=> import("./pages/SubscriptionPlan"));
-const Tickets = lazy(()=> import("./pages/Tickets"));
-const AddTicket = lazy(()=> import("./pages/AddTicket"));
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const Products = lazy(() => import("./pages/Products"));
+const MyProducts = lazy(() => import("./pages/MyProducts"));
+const EditProduct = lazy(() => import("./pages/EditProduct"));
+const Orders = lazy(() => import("./pages/Orders"));
+const DashBoardLayOut = lazy(() => import("./pages/DashBoardLayOut"));
+const Addedproducts = lazy(() => import("./pages/Addedproducts"));
+const Addproduct = lazy(() => import("./pages/Addproduct"));
+const SubscriptionPlan = lazy(() => import("./pages/SubscriptionPlan"));
+const Tickets = lazy(() => import("./pages/Tickets"));
+const AddTicket = lazy(() => import("./pages/AddTicket"));
+const Wallet = lazy(() => import("./pages/Wallet"));
+const Integrations = lazy(() => import("./pages/Integrations"));
+const Subscripe = lazy(() => import("./pages/Subscripe"));
+const EditProfile = lazy(() => import("./pages/EditProfile"));
 
 // Login and Register
-const Login = lazy(()=> import("./pages/Login"));
-const Register = lazy(()=> import("./pages/Register"));
+const Login = lazy(() => import("./pages/Login"));
+const Register = lazy(() => import("./pages/Register"));
 
 //Home page import
-const Home = lazy(()=> import("./website/Home"))
-const Weblayout = lazy(()=> import("./website/Weblayout"))
-const Subscription = lazy(()=> import("./website/Subscription"))
+const Home = lazy(() => import("./website/Home"));
+const Weblayout = lazy(() => import("./website/Weblayout"));
+const Subscription = lazy(() => import("./website/Subscription"));
+
 
 // Protected Route
-const ProtectedRoute = lazy(()=> import("./pages/ProtectedRoute"))
-
+const ProtectedRoute = lazy(() => import("./pages/ProtectedRoute"));
 
 
 axios.defaults.withCredentials = true;
@@ -42,7 +46,8 @@ function App() {
   const { t, i18n } = useTranslation();
 
   useEffect(() => {
-    // language basic ar
+    const token = localStorage.getItem("token");
+    
     localStorage.setItem("language", lang);
     const savedLanguage = localStorage.getItem("language") || lang;
     if (savedLanguage) {
@@ -69,14 +74,7 @@ function App() {
 
       {/** website Dashboard */}
 
-      <Route
-        path="/dashboard/"
-        element={
-          
-            <DashBoardLayOut />
-          
-        }
-      >
+      <Route path="/dashboard/" element={<DashBoardLayOut />}>
         <Route index element={<Dashboard />} />
         <Route path="products" element={<Products />} />
         <Route path="my-products" element={<MyProducts />} />
@@ -85,8 +83,12 @@ function App() {
         <Route path="added-products" element={<Addedproducts />} />
         <Route path="add-product" element={<Addproduct />} />
         <Route path="subscription-plan" element={<SubscriptionPlan />} />
-        <Route path="tickets" element={<Tickets/>}/>
-        <Route path="add-ticket" element={<AddTicket/>}/>
+        <Route path="subscription-plan/subscripe" element={<Subscripe />} />
+        <Route path="tickets" element={<Tickets />} />
+        <Route path="add-ticket" element={<AddTicket />} />
+        <Route path="wallet" element={<Wallet />} />
+        <Route path="integrations" element={<Integrations />} />
+        <Route path="profile" element={<EditProfile />} />
       </Route>
     </Routes>
   );

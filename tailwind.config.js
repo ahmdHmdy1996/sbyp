@@ -6,7 +6,9 @@ export default {
       padding: "2rem",
     },
     screens: {
-      sm: "640px",
+      xs:"300px",
+
+      sm: "400px",
       // => @media (min-width: 640px) { ... }
 
       md: "768px",

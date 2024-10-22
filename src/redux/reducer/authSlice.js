@@ -3,8 +3,7 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { toast } from "react-toastify";
 
-
-const API_URL = "https://sbyp-sa.com/api";
+const API_URL = "https://back.sbyp-sa.com/api";
 
 // Register User
 export const register = createAsyncThunk(
@@ -19,7 +18,7 @@ export const register = createAsyncThunk(
           withCredentials: true,
         }
       );
-      localStorage.setItem('user', JSON.stringify(response.data.user)); // Save to localStorage
+      localStorage.setItem("user", JSON.stringify(response.data.user)); // Save to localStorage
       return response.data;
     } catch (error) {
       console.log(error.response.data.errors);
@@ -37,14 +36,22 @@ export const login = createAsyncThunk(
         headers: { "Content-Type": "application/json" },
         withCredentials: true,
       });
-      localStorage.setItem('user', JSON.stringify(response.data.user)); // Save to localStorage
-      localStorage.setItem('token',JSON.stringify(response.data.access_token))
+      localStorage.setItem("user", JSON.stringify(response.data.user)); // Save to localStorage
+      localStorage.setItem("token", JSON.stringify(response.data.access_token));
       return response.data;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      console.log(error.response.data.message);
+      return rejectWithValue(error.response.data.message);
     }
   }
 );
+
+
+//tickets data
+// export const getData = createAsyncThunk(
+//   "tickets/getData",
+//   async (token, {rejectWithValue})
+// )
 
 const authSlice = createSlice({
   name: "auth",
@@ -58,7 +65,8 @@ const authSlice = createSlice({
     logout: (state) => {
       state.user = null; // Handle logout
       state.isAuthenticated = false;
-      localStorage.removeItem('user');
+      localStorage.removeItem("user");
+      localStorage.removeItem("token");
     },
     setUser(state, action) {
       state.user = action.payload;
@@ -74,9 +82,7 @@ const authSlice = createSlice({
     builder.addCase(register.fulfilled, (state, action) => {
       state.loading = false;
       state.user = action.payload;
-      state.error= null,
-      state.isAuthenticated = true;
-      
+      (state.error = null), (state.isAuthenticated = true);
     });
     builder.addCase(register.rejected, (state, action) => {
       state.loading = false;

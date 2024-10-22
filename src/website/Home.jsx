@@ -14,7 +14,7 @@ import Footer from "./components/Footer";
 const Home = () => {
   return (
     <>
-      <div className="container m-auto">
+      <div className="lg:container m-auto">
         
         <Hero />
         <LogoBar />

@@ -10,10 +10,10 @@ const Joined = () => {
   return (
     <Element name="join">
       <section id="join" className="container mx-auto px-4 py-12">
-        <h1 className="text-xl lg:text-3xl font-bold text-center mb-4">
+        <h1 className="text-md lg:text-3xl font-bold text-center mb-4">
           استمتع بتجربة سهلة ومبسطة ✨
         </h1>
-        <h2 className="text-xl lg:text-3xl font-bold text-center text-indigo-900 mb-12">
+        <h2 className="text-sm lg:text-3xl font-bold text-center text-indigo-900 mb-12">
           كيف تستخدم نظام SBYP لتحقيق أهدافك
         </h2>
         <div className="flex flex-col lg:flex-row justify-center  items-center space-y-8 md:space-y-0 md:space-x-8">
@@ -23,10 +23,10 @@ const Joined = () => {
               alt="Login and account creation icons"
               className="mb-4"
             />
-            <h3 className="text-md lg:text-xl font-bold mb-2">
+            <h3 className="text-sm lg:text-xl font-bold mb-2">
               تسجيل الدخول أو إنشاء حساب للوصول إلى منصتنا
             </h3>
-            <p className="text-gray-400 text-sm lg:text-lg">
+            <p className="text-gray-400 text-xs lg:text-lg">
               قم بتسجيل الدخول أو إنشاء حساب جديد لتتمكن من استخدام منصتنا
               والاستفادة من مميزاتها.
             </p>
@@ -41,10 +41,10 @@ const Joined = () => {
               alt="Icons representing different platforms"
               className="mb-4  w-56"
             />
-            <h3 className="text-md lg:text-xl font-bold mb-2">
+            <h3 className="text-sm lg:text-xl font-bold mb-2">
               ربط موقعك الإلكتروني بنقرات قليلة
             </h3>
-            <p className="text-sm lg:text-lg text-gray-400">
+            <p className="text-xs lg:text-lg text-gray-400">
               اختر التطبيق الذي ترغب في ربطه بموقعك الإلكتروني بكل سهولة ونقرات
               بسيطة.
             </p>
@@ -58,10 +58,10 @@ const Joined = () => {
               alt="Graph showing sales data"
               className="mb-4"
             />
-            <h3 className="text-md lg:text-xl font-bold mb-2 p-1">
+            <h3 className="text-sm lg:text-xl font-bold mb-2 p-1">
               احصل على بيانات المبيعات التي تحتاجها
             </h3>
-            <p className="text-gray-400 text-sm lg:text-lg">
+            <p className="text-gray-400 text-xs lg:text-lg">
               يمكنك الوصول إلى بيانات مبيعات منتجاتك بكل تفاصيلها بما في ذلك
               المتغيرات التي ترغب بتحليلها.
             </p>

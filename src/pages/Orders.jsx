@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import bus from "/src/assets/Icons/bus.svg";
 import deviceLaptop from "/src/assets/Icons/device-laptop.svg";
@@ -8,6 +8,8 @@ import trash from "/src/assets/Icons/trash.svg";
 import oneplusPro from "/src/assets/Images/oneplus-7pro.png";
 import magicMouse from "/src/assets/Images/magic-mouse.png";
 import { Link } from "react-router-dom";
+import RechargeWallet from "../components/RechargeWallet";
+import MissingRequest from "../components/MissingRequest";
 
 export const ordersArray = [
   {
@@ -37,6 +39,22 @@ export const ordersArray = [
 ];
 
 const Orders = () => {
+  const [modalRechargeOpen, setModalRechargeOpen] = useState(false);
+  const [modalMissingOpen, setModalMissingOpen] = useState(false);
+
+  const openRechargeModal = () => {
+    setModalRechargeOpen(true);
+  };
+  const closeRechargeModal = () => {
+    setModalRechargeOpen(false);
+  };
+  const openMissingModal = () => {
+    setModalMissingOpen(true);
+  };
+  const closeMissingModal = () => {
+    setModalMissingOpen(false);
+  };
+
   const { t, i18n } = useTranslation();
   useEffect(() => {
     const savedLanguage = localStorage.getItem("language");
@@ -81,15 +99,21 @@ const Orders = () => {
               required
             />
           </div>
-          <button className="bg-menu text-white text-gray-500 rounded-full  px-3 py-3 mx-3 flex min-w-52">
+          <button
+            onClick={openRechargeModal}
+            className="bg-menu text-white text-gray-500 rounded-full  px-3 py-3 mx-3 flex min-w-52"
+          >
             <img src="/src/assets/Icons/empty-wallet-change.svg" alt="" />
             <p className="mx-2">اعادة شحن المحفظة</p>
           </button>
-          <button className="bg-white text-gray-500 rounded-full  px-3 py-3 mx-3 flex min-w-40">
+          <button
+            onClick={openMissingModal}
+            className="bg-white text-gray-500 rounded-full  px-3 py-3 mx-3 flex min-w-40"
+          >
             <img src={bus} alt="" />
             <p className="mx-2">الطلب مفقود</p>
           </button>
-          
+
           <div className=" bg-white text-gray-500 rounded-full  px-3 py-3 mx-3">
             <svg
               width="25px"
@@ -171,7 +195,9 @@ const Orders = () => {
                   </div>
                 </td>
                 <td>{item.code}</td>
-                <td>{item.price} {t("curr")}</td>
+                <td>
+                  {item.price} {t("curr")}
+                </td>
                 <td>{item.quantity}</td>
                 <td className="py-2">
                   <span
@@ -206,6 +232,18 @@ const Orders = () => {
           </tbody>
         </table>
       </div>
+      {modalRechargeOpen && (
+        <div>
+          <div className="fixed inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center ">
+            <RechargeWallet closeModal={closeRechargeModal} />
+          </div>
+        </div>
+      )}
+      {modalMissingOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex flex-col items-center justify-center ">
+          <MissingRequest closeMissingModal={closeMissingModal} />
+        </div>
+      )}
     </div>
   );
 };

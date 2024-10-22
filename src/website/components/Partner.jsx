@@ -9,16 +9,16 @@ import { Element } from "react-scroll";
 const Partner = () => {
   return (
     <Element name="partner">
-      <section className="container mx-auto px-4 py-8">
+      <section className="lg:container mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row items-center text-center lg:text-right">
-          <div className="lg:w-1/2 mt-8 lg:mt-0 flex justify-center relative">
+          <div className="lg:w-1/2 my-8 lg:mt-0 flex justify-center relative">
             <img src={Group28} alt="" className="" />
           </div>
-          <div className="lg:w-1/2 px-10">
-            <h1 className="text-xl lg:text-3xl lg:text-5xl font-bold text-gray-900 mb-4 !leading-normal ">
+          <div className="lg:w-1/2 ">
+            <h1 className="text-md lg:text-3xl lg:text-5xl font-bold text-gray-900 mb-4 !leading-normal ">
               شريكك المثالي في رحلة التجارة الإلكترونية 🛒
             </h1>
-            <p className="text-md lg:text-lg text-gray-400 mb-8">
+            <p className="text-sm lg:text-lg text-gray-400 mb-8">
               نظام SBYP هو شريكك المثالي في رحلة التجارة الإلكترونية. نقدم لك
               منصة متكاملة تجمع بين سهولة الاستخدام والمرونة في الإدارة.
             </p>

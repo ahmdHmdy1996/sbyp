@@ -60,16 +60,23 @@ const Login = () => {
     if (isAuthenticated) {
       navigate("/dashboard");
     }
-  }, [isAuthenticated, navigate]);
+    if (error) {
+      toast.error(error);
+    }
+    if(loading){
+      toast.info(loading)
+    }
+  }, [error,isAuthenticated, navigate]);
 
   return (
     <div className="flex max-h-screen min-h-screen ">
+      
       <ToastContainer />
-      <div className="w-2/3 relative">
+      <div className="w-2/3 relative hidden lg:block ">
         <img
           src={Linked}
           alt="A man and a woman working together in a flower shop, scanning a package"
-          className="w-full h-full object-cover mb-4"
+          className="w-full h-full object-cover mb-4 "
         />
         <motion.div
           variants={container}
@@ -95,8 +102,8 @@ const Login = () => {
           <img src={logo} className="max-w-20" />
         </Link>
       </div>
-      <div className="w-1/3 bg-white flex flex-col justify-center items-center p-8">
-        <div className="w-full max-w-sm">
+      <div className="w-full lg:w-1/3 bg-white flex flex-col justify-center items-center p-8 m-auto ">
+        <div className="w-full max-w-sm ">
           <h1 className="text-2xl font-bold mb-4"> مرحباً بعودتك!</h1>
           <p className="text-gray-500 mb-6">تسجيل دخولك للمتابعة إلى حسابك.</p>
           <form className="space-y-4" onSubmit={HandleSubmit}>

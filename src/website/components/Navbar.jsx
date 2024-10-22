@@ -22,21 +22,31 @@ const Navbar = () => {
 
   const { user } = useSelector((state) => state.auth);
   const [open, setOpen] = useState(false);
+
+  const handleMenuClose = () => {
+    setOpen(false); // Close the menu when called
+  };
+
+
+
+
   const borderStyle =
     "relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-menu after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-right";
 
   return (
-    <nav className="flex justify-between items-center p-4 bg-white mx-16 m-auto">
+    <nav className="flex justify-between items-center p-4 bg-white mx-2 lg:mx-16 m-auto">
       <div className="flex md:hidden justify-between w-full">
         <MdMenu
           className="text-4xl cursor-pointer bg-menu text-white p-1 rounded-xl "
-          onClick={() => setOpen(!open)}
+          onClick={() => setOpen(!open) }
         />
-        <MobileMenu open={open} />
+        <MobileMenu open={open} onClose={handleMenuClose} />
+        <Link to="/">
         <img src={logo} alt="" className="max-w-20" />
+        </Link>
       </div>
 
-      <div className="hidden md:flex items-center space-x-8 space-x-reverse ">
+      <div className="hidden md:flex items-center space-x-3 space-x-reverse lg:space-x-8 lg:space-x-reverse ">
         <Link to="/" className="flex items-center space-x-1">
           <img src={logo} alt="" className="max-w-20" />
         </Link>
