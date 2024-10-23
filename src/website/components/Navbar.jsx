@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import logo from "/src/assets/Images/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { Link as Scroll } from "react-scroll";
@@ -10,6 +10,7 @@ import { logout } from "../../redux/reducer/authSlice";
 import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
+  const [isScrolled, setIsScrolled] = useState(false);
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -27,22 +28,39 @@ const Navbar = () => {
     setOpen(false); // Close the menu when called
   };
 
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
 
+    window.addEventListener("scroll", handleScroll);
 
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const borderStyle =
     "relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-menu after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-right";
 
   return (
-    <nav className="flex justify-between items-center p-4 bg-white mx-2 lg:mx-16 m-auto">
-      <div className="flex md:hidden justify-between w-full">
+    <nav
+      className={`flex justify-between items-center p-4 bg-white mx-2 lg:mx-16 m-auto  top-0 left-0 w-full transition-all duration-300 ${
+        isScrolled ? "shadow-md fixed z-30" : ""
+      }`}
+    >
+      <div className="flex md:hidden justify-between w-full z-30">
         <MdMenu
-          className="text-4xl cursor-pointer bg-menu text-white p-1 rounded-xl "
-          onClick={() => setOpen(!open) }
+          className="text-4xl cursor-pointer bg-menu text-white p-1 rounded-xl z-30"
+          onClick={() => setOpen((prev) => !prev)}
         />
         <MobileMenu open={open} onClose={handleMenuClose} />
         <Link to="/">
-        <img src={logo} alt="" className="max-w-20" />
+          <img src={logo} alt="" className="max-w-20" />
         </Link>
       </div>
 
@@ -87,9 +105,12 @@ const Navbar = () => {
       <div className="hidden md:flex items-center space-x-8 space-x-reverse">
         {user ? (
           <>
-          <Link to="/dashboard" className="bg-blue-500 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded-md transition duration-300 ">
-            Dashboard 
-          </Link>
+            <Link
+              to="/dashboard"
+              className="bg-blue-500 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded-md transition duration-300 "
+            >
+              Dashboard
+            </Link>
             <div
               className={`hidden  w-[13rem] h-[3rem] rounded-full text-white bg-menu lg:flex relative justify-center items-center content-center ${
                 language == "en" ? "pl-5 ml-3" : "pr-5 mr-3"
@@ -102,7 +123,9 @@ const Navbar = () => {
                 src="/Avatar.png"
                 alt="avatar"
               />
-              <span>{user ? user.user_name || user.user.user_name : t("name")}</span>
+              <span>
+                {user ? user.user_name || user.user.user_name : t("name")}
+              </span>
             </div>
             <button
               onClick={handleLogout}
@@ -110,7 +133,6 @@ const Navbar = () => {
             >
               Logout
             </button>
-            
           </>
         ) : (
           <>

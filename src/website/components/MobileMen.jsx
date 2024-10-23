@@ -51,7 +51,7 @@ const MobileMenu = ({ open, onClose }) => {
           transition={{ duration: 0.3 }}
           className="absolute top-10 left-0 w-full h-screen z-20"
         >
-          <div ref={menuRef} className="text-xl font-semibold text-white py-10 rounded-3xl">
+          <div ref={menuRef} className="text-xl font-semibold text-white my-8 rounded-3xl">
             <ul className="flex flex-col justify-center p-6 items-center gap-10 cursor-pointer bg-menu">
               <Scroll className="hover:scale-120" to="join" smooth={true} duration={500}>
                 كيف نعمل؟

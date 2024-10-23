@@ -9,7 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../redux/reducer/authSlice";
 import { toast, ToastContainer } from "react-toastify";
-
+import logoo from "/src/assets/Images/logo.png";
 const container = {
   hidden: { opacity: 1, scale: 0 },
   visible: {
@@ -54,8 +54,8 @@ const Login = () => {
   };
 
   useEffect(() => {
-    if (isAuthenticated){
-      toast("login Success")
+    if (isAuthenticated) {
+      toast("login Success");
     }
     if (isAuthenticated) {
       navigate("/dashboard");
@@ -63,14 +63,13 @@ const Login = () => {
     if (error) {
       toast.error(error);
     }
-    if(loading){
-      toast.info(loading)
+    if (loading) {
+      toast.info(loading);
     }
-  }, [error,isAuthenticated, navigate]);
+  }, [error, isAuthenticated, navigate]);
 
   return (
-    <div className="flex max-h-screen min-h-screen ">
-      
+    <div className="flex max-h-screen min-h-screen  ">
       <ToastContainer />
       <div className="w-2/3 relative hidden lg:block ">
         <img
@@ -82,7 +81,7 @@ const Login = () => {
           variants={container}
           initial="hidden"
           animate="visible"
-          className="absolute bottom-8 w-[90%] h-44 m-auto left-0 right-0  bg-pattern p-6 text-white rounded-xl"
+          className="absolute  bottom-8 w-[90%] h-44 m-auto left-0 right-0  bg-pattern p-6 text-white rounded-xl"
           style={{ backgroundImage: "url(" + externalImageUrl + ")" }}
         >
           <motion.h2
@@ -98,12 +97,15 @@ const Login = () => {
             الرقمي بمرونة وكفاءة.
           </motion.p>
         </motion.div>
-        <Link to="/" className="absolute right-5 top-5">
+        <Link to="/" className="hidden lg:block absolute right-5 top-5">
           <img src={logo} className="max-w-20" />
         </Link>
       </div>
-      <div className="w-full lg:w-1/3 bg-white flex flex-col justify-center items-center p-8 m-auto ">
-        <div className="w-full max-w-sm ">
+      <div className="w-[95%] lg:w-1/3 bg-white flex flex-col justify-center items-center py-6 px-4 m-auto">
+        <Link to="/" className="lg:hidden absolute right-5 top-5">
+          <img src={logoo} className="max-w-20" />
+        </Link>
+        <div className="w-full max-w-sm mt-20 ">
           <h1 className="text-2xl font-bold mb-4"> مرحباً بعودتك!</h1>
           <p className="text-gray-500 mb-6">تسجيل دخولك للمتابعة إلى حسابك.</p>
           <form className="space-y-4" onSubmit={HandleSubmit}>

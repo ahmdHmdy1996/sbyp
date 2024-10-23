@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Linked from "/src/assets/Images/Group441.png";
 import logo from "/src/assets/Images/logo-white (2).png";
+import logoo from "/src/assets/Images/logo.png";
 import eye from "/src/assets/Icons/eye.png";
 import eyeSlash from "/src/assets/Icons/eye-slash.png";
 import { motion } from "framer-motion";
@@ -43,7 +44,7 @@ const Register = () => {
   }, [error,user]);
 
   return (
-    <div className="flex max-h-screen min-h-screen">
+    <div className="flex max-h-screen min-h-screen ">
       <ToastContainer />
 
       <div className="w-0 lg:w-4/6 relative">
@@ -52,12 +53,15 @@ const Register = () => {
           alt="A man and a woman working together in a flower shop, scanning a package"
           className="w-full h-full object-cover mb-4"
         />
-
-        <Link to="/" className="absolute right-5 top-5">
+        
+        <Link to="/" className=" lg:absolute right-5 top-5">
           <img src={logo} className="max-w-20" />
         </Link>
+        <Link to="/" className=" absolute lg:hidden right-5 top-5">
+          <img src={logoo} className="max-w-20" />
+        </Link>
       </div>
-      <div className="w-full lg:w-2/6 bg-white flex flex-col justify-center items-center my-20">
+      <div className="w-[90%] lg:w-2/6 bg-white flex flex-col justify-center items-center lg:mx-2 m-auto mt-32 lg:my-20">
         <div className="w-full max-w-sm">
           <h1 className="text-xl font-bold mb-2"> مرحبًا بك في SBYP! 🎉</h1>
           <p className="text-sm text-gray-500 mb-6">

@@ -63,7 +63,7 @@ const MarketingCampaigns = () => {
       </div>
       <p className="text-gray-400 text-sm mb-4">8.52 ألف زائر</p>
 
-      <div className="space-y-4 grid grid-cols-2 lg:grid-cols-1">
+      <div className="space-y-4 grid grid-cols-1">
         {Array.map((item) => (
           <div
             key={item.name}

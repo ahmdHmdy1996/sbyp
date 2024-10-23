@@ -25,7 +25,7 @@ export default function DashBoardLayOut() {
       <ToastContainer />
       <div className="App bg-home flex">
         <Sidebar />
-        <section className={"lg:w-5/6 p-6 w-full"}>
+        <section className={"lg:w-5/6 lg:p-6 w-full"}>
           <Navbar />
 
           <div>

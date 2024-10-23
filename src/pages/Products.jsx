@@ -9,69 +9,63 @@ import Frame95 from "/src/assets/Images/Frame95.png";
 import Frame96 from "/src/assets/Images/Frame96.png";
 import Frame97 from "/src/assets/Images/Frame97.png";
 import FilterProduct from "../components/FilterProduct";
+import axios from "axios";
 
 export const productArray2 = [
   {
-    name: "أسم المنتج",
-    price: 150,
-    category: "اسم التصنيف",
-    image: Frame91,
+    ar_title: "أسم المنتج",
+    sale_price: 150,
+    category_ar_title: "اسم التصنيف",
+    main_image: Frame91,
     quantity: "8",
-    code:"444"
+    stock: "50",
   },
   {
-    name: "أسم المنتج",
-    price: 150,
-    category: "اسم التصنيف",
-    image: Frame92,
+    ar_title: "أسم المنتج",
+    sale_price: 150,
+    category_ar_title: "اسم التصنيف",
+    main_image: Frame92,
     quantity: "8",
-    code:"446"
+    stock: "200",
   },
   {
-    name: "أسم المنتج",
-    price: 150,
-    category: "اسم التصنيف",
-    image: Frame93,
+    ar_title: "أسم المنتج",
+    sale_price: 150,
+    category_ar_title: "اسم التصنيف",
+    main_image: Frame93,
     quantity: "8",
-    code:"447"
-
+    stock: "100",
   },
   {
-    name: "أسم المنتج",
-    price: 150,
-    category: "اسم التصنيف",
-    image: Frame94,
+    ar_title: "أسم المنتج",
+    sale_price: 150,
+    category_ar_title: "اسم التصنيف",
+    main_image: Frame94,
     quantity: "8",
-    code:"448"
+    stock: "76",
   },
   {
-    name: "أسم المنتج",
-    price: 150,
-    category: "اسم التصنيف",
-    image: Frame95,
+    ar_title: "أسم المنتج",
+    sale_price: 150,
+    category_ar_title: "اسم التصنيف",
+    main_image: Frame95,
     quantity: "8",
-    code:"449"
+    stock: "66",
   },
   {
-    name: "أسم المنتج",
-    price: 150,
-    category: "اسم التصنيف",
-    image: Frame96,
+    ar_title: "أسم المنتج",
+    sale_price: 150,
+    category_ar_title: "اسم التصنيف",
+    main_image: Frame96,
     quantity: "8",
-    code:"450"
+    stock: "444",
   },
-  {
-    name: "أسم المنتج",
-    price: 150,
-    category: "اسم التصنيف",
-    image: Frame97,
-    quantity: "8",
-    code:"451"
-  },
+  
 ];
 
 const Products = () => {
   const [Filter, setFilter] = useState(false);
+  const [productArray ,setProduct] = useState([])
 
   const openFilter = () => {
     setFilter(!Filter);
@@ -85,12 +79,25 @@ const Products = () => {
       document.body.dir = savedLanguage === "ar" ? "rtl" : "ltr"; // Set direction
     }
 
-    
+    const token = localStorage.getItem("token");
 
-
-
+    if (token) {
+      axios
+        .get("https://back.sbyp-sa.com/api/products", {
+          headers: {
+            Authorization: `Bearer ${JSON.parse(token)}`,
+          },
+        })
+        .then((res) => {
+          setProduct(res.data.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   }, [i18n]);
-
+  console.log(productArray);
+  
   const language = localStorage.getItem("language");
   return (
     <div className="grid grid-cols-4">
@@ -138,9 +145,15 @@ const Products = () => {
         </div>
 
         {/* products catalog */}
-        <div className={`grid  ${Filter?"grid-cols-2":"grid-cols-3"}  `}>
+        <div className={`grid  ${Filter ? "grid-cols-2" : "place-items-center lg:place-items-stretch grid-cols-1 md:grid-cols-2 lg:grid-cols-3"}  `}>
           {productArray2.map((item, index) => (
             <>
+              <Product item={item} key={index} />
+            </>
+          ))}
+          {productArray.map((item, index) => (
+            <>
+          
               <Product item={item} key={index} />
             </>
           ))}

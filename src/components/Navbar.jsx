@@ -44,14 +44,14 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`${pathname === '/login' ?"hidden" :"flex"} bg-home px-4 pb-5  flex-col lg:flex-row justify-between  items-center content-center  ${
+      className={`${pathname === '/login' ?"hidden" :"flex"} bg-home px-4 py-5  flex-col lg:flex-row justify-between  items-center content-center  ${
         language == "en" ? "right-0" : "left-0"
       }`}
     >
 
      {/* Mobile Menu */}
 
-      <div className="flex lg:hidden flex justify-between  w-full items-center mb-4">
+      <div className="flex lg:hidden justify-between  w-full items-center mb-4">
         <MdMenu className="text-4xl cursor-pointer bg-menu text-white p-1 rounded-xl " onClick={()=>setOpen(!open)}/>
         <MobileMenu open={open}/>
 

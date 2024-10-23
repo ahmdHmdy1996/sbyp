@@ -2,7 +2,7 @@ import React from "react";
 
 const TotalSalesMon = () => {
   return (
-    <div className="col-span-3 lg:col-span-2">
+    <div className="col-span-6 lg:col-span-2 m-auto">
       <div className=" w-full bg-gray-100 h-full">
         <div className="bg-white rounded-3xl h-full">
           <h2 className="hidden lg:block text-gray-700 text-lg font-semibold pt-4 px-3 mb-2">

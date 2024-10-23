@@ -19,7 +19,7 @@ const Dashboard = () => {
  
   
   return (
-    <div className="bg-home row-span-2 grid grid-cols-6 gap-5 mt-5 ">
+    <div className="bg-home row-span-2 grid grid-cols-6 gap-5 place-items-center lg:place-items-stretch mt-5 w-full overflow-hidden">
       
       <WelcomeMsg />
       <TotalSalesMon />

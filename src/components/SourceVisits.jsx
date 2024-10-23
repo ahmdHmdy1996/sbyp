@@ -95,7 +95,7 @@ const SourceVisits = () => {
 
   return (
     <div className="col-span-6 lg:col-span-2 ">
-      <div className=" bg-white p-6 rounded-lg shadow-md">
+      <div className=" bg-white p-6 rounded-lg w-[95%]  m-auto">
         <h2 className="text-lg font-semibold mb-1">{t("SourceVisits")}</h2>
         <p className="text-gray-500 mb-4">38.4 {t("Visitors")}</p>
         <div className="mb-6 w-[100%] ">

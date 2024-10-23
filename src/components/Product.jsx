@@ -15,10 +15,10 @@ const Product = ({ item }) => {
           <span className="absolute bg-yellow/65 text-white px-8 py-2 rounded-full left-4 top-4 z-10 ">
             جديد
           </span>
-          <Link to={`/dashboard/my-product/${item.code}`}>
+          <Link to={`/dashboard/my-product/${item.id}`}>
             <img
               className="rounded-3xl mb-2 transition-transform duration-500 ease-in-out transform hover:scale-110 cursor-pointer "
-              src={item.image}
+              src={item.main_image || "/src/assets/Images/product.jpg"}
             />
           </Link>
           <span className="absolute bg-yellow/65 text-white px-8 py-2 rounded-full right-4 bottom-5 flex">
@@ -27,13 +27,13 @@ const Product = ({ item }) => {
           </span>
         </div>
         <div className="flex justify-between border-b border-gray-300 py-3 ">
-          <h3 className="text-xl font-bold">{item.name}</h3>
-          <span className="text-xl font-bold"> {item.price} $</span>
+          <h3 className="text-xl font-bold">{item.ar_title}</h3>
+          <span className="text-xl font-bold"> {item.sale_price} $</span>
         </div>
         <div className="flex justify-between text-gray-400 my-4">
           <div className="flex">
             <img src={Tags} alt="" className="w-5 mx-1" />
-            <p>{item.category}</p>
+            <p>{item.category_ar_title}</p>
           </div>
           <div className="flex ">
             <img src={TruckTime} className="w-4 mx-1" />
@@ -42,7 +42,7 @@ const Product = ({ item }) => {
           </div>
           <div className="flex ">
             <img src={Shop} alt="" className="w-5 mx-1" />
-            <p>{item.quantity} قطع</p>
+            <p>{item.stock} قطع</p>
           </div>
         </div>
         <div className="flex justify-between align-center items-center border border-gray-300 rounded-full px-3 text-menu">
