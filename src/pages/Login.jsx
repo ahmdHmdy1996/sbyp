@@ -1,10 +1,15 @@
-import React, { useState } from "react";
-import Linked from "/Images/linkedin-sales.png";
-import logo from "/Images/logo-white.png";
-import eye from "/Icons/eye.png";
-import eyeSlash from "/Icons/eye-slash.png";
+import React, { useEffect, useState } from "react";
+import Linked from "/src/assets/Images/linkedin-sales.png";
+import logo from "/src/assets/Images/logo-white (2).png";
+import eye from "/src/assets/Icons/eye.png";
+import eyeSlash from "/src/assets/Icons/eye-slash.png";
 import { motion } from "framer-motion";
-
+import externalImageUrl from "/src/assets/Images/Rectangle2757.png";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { login } from "../redux/reducer/authSlice";
+import { toast, ToastContainer } from "react-toastify";
+import logoo from "/src/assets/Images/logo.png";
 const container = {
   hidden: { opacity: 1, scale: 0 },
   visible: {
@@ -26,29 +31,58 @@ const item = {
 };
 
 const Login = () => {
-  const [email, setEmail] = useState("");
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [identifier, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [visibale, setVisibale] = useState(false);
 
+  const { loading, error, isAuthenticated } = useSelector(
+    (state) => state.auth
+  );
+  const lang = "ar";
   const HandleSubmit = (e) => {
     e.preventDefault();
+    if (!identifier || !password) {
+      return toast.error("كل الخانات مطلوبة");
+    }
+    if (password < 8) {
+      return toast.error("الباسورد اكثر من 7 حروف او ارقام");
+    }
 
-    console.log(email, password);
+    dispatch(login({ identifier, password, lang }));
   };
 
+  useEffect(() => {
+    if (isAuthenticated) {
+      toast("login Success");
+    }
+    if (isAuthenticated) {
+      navigate("/dashboard");
+    }
+    if (error) {
+      toast.error(error);
+    }
+    if (loading) {
+      toast.info(loading);
+    }
+  }, [error, isAuthenticated, navigate]);
+
   return (
-    <div className="flex max-h-screen min-h-screen">
-      <div className="w-2/3 relative">
+    <div className="flex max-h-screen min-h-screen  ">
+      <ToastContainer />
+      <div className="w-2/3 relative hidden lg:block ">
         <img
           src={Linked}
           alt="A man and a woman working together in a flower shop, scanning a package"
-          className="w-full h-full object-cover mb-4"
+          className="w-full h-full object-cover mb-4 "
         />
         <motion.div
           variants={container}
           initial="hidden"
           animate="visible"
-          className="absolute bottom-8 w-[90%] h-44 m-auto left-0 right-0  bg-pattern p-6 text-white rounded-xl"
+          className="absolute  bottom-8 w-[90%] h-44 m-auto left-0 right-0  bg-pattern p-6 text-white rounded-xl"
+          style={{ backgroundImage: "url(" + externalImageUrl + ")" }}
         >
           <motion.h2
             variants={item}
@@ -63,12 +97,15 @@ const Login = () => {
             الرقمي بمرونة وكفاءة.
           </motion.p>
         </motion.div>
-        <div className="absolute right-5 top-5">
+        <Link to="/" className="hidden lg:block absolute right-5 top-5">
           <img src={logo} className="max-w-20" />
-        </div>
+        </Link>
       </div>
-      <div className="w-1/3 bg-white flex flex-col justify-center items-center p-8">
-        <div className="w-full max-w-sm">
+      <div className="w-[95%] lg:w-1/3 bg-white flex flex-col justify-center items-center py-6 px-4 m-auto">
+        <Link to="/" className="lg:hidden absolute right-5 top-5">
+          <img src={logoo} className="max-w-20" />
+        </Link>
+        <div className="w-full max-w-sm mt-20 ">
           <h1 className="text-2xl font-bold mb-4"> مرحباً بعودتك!</h1>
           <p className="text-gray-500 mb-6">تسجيل دخولك للمتابعة إلى حسابك.</p>
           <form className="space-y-4" onSubmit={HandleSubmit}>
@@ -80,12 +117,13 @@ const Login = () => {
                 }}
                 type="email"
                 id="email"
+                autoComplete="email" // Add autocomplete attribute
                 placeholder="أدخل بريدك الإلكتروني"
                 className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-600"
               />
             </div>
             <label className="block text-gray-700">كلمة المرور</label>
-            <div className="relative">
+            <div className="relative mt-0">
               <input
                 onChange={(e) => {
                   setPassword(e.target.value);
@@ -125,21 +163,10 @@ const Login = () => {
           <div className="mt-6 text-center">
             <p className="text-gray-600">
               ليس لديك حساب؟
-              <a href="#" className="text-menu">
+              <Link to="/register" className="text-menu">
                 إنشاء حساب جديد
-              </a>
+              </Link>
             </p>
-          </div>
-          <div className="mt-4 flex justify-center space-x-4">
-            <a href="#" className="text-gray-600">
-              <i className="fab fa-google"></i>
-            </a>
-            <a href="#" className="text-gray-600">
-              <i className="fab fa-facebook"></i>
-            </a>
-            <a href="#" className="text-gray-600">
-              <i className="fab fa-twitter"></i>
-            </a>
           </div>
         </div>
       </div>

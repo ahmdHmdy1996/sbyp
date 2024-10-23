@@ -1,42 +1,163 @@
-import React from "react";
-import logo from "/Images/logo.png";
+import React, { useEffect, useState } from "react";
+import logo from "/src/assets/Images/logo.png";
+import { useDispatch, useSelector } from "react-redux";
+import { Link as Scroll } from "react-scroll";
+import { Link } from "react-router-dom";
+import MobileMenu from "./MobileMen";
+import { MdMenu } from "react-icons/md";
+import { useTranslation } from "react-i18next";
+import { logout } from "../../redux/reducer/authSlice";
+import { useNavigate } from "react-router-dom";
+
 const Navbar = () => {
-  const borderStyle = "relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-menu after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-right"
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { t, i18n } = useTranslation();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const language = localStorage.getItem("language");
+
+  const handleLogout = () => {
+    dispatch(logout()); // Dispatch logout action
+    navigate("/login", { replace: true }); // Redirect to login page
+  };
+
+  const { user } = useSelector((state) => state.auth);
+  const [open, setOpen] = useState(false);
+
+  const handleMenuClose = () => {
+    setOpen(false); // Close the menu when called
+  };
+
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 50) {
+        setIsScrolled(true);
+      } else {
+        setIsScrolled(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const borderStyle =
+    "relative w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-menu after:w-full after:scale-x-0 after:hover:scale-x-100 after:transition after:duration-300 after:origin-right";
+
   return (
-    <div className="flex justify-between items-center p-4 bg-white ">
-      <div className="flex md:hidden">
-
-      </div>
-
-      <div className="hidden md:flex items-center space-x-8 space-x-reverse">
-        <div className="flex items-center space-x-1">
+    <nav
+      className={`flex justify-between items-center p-4 bg-white  m-auto   w-full transition-all duration-300 ${
+        isScrolled ? "shadow-md fixed z-30 op-0 left-0" : ""
+      }`}
+    >
+      <div className="flex md:hidden justify-between w-full ">
+        <MdMenu
+          className="text-4xl cursor-pointer bg-menu text-white p-1 rounded-xl z-30"
+          onClick={() => setOpen(!open)}
+        />
+        <MobileMenu open={open} onClose={handleMenuClose} />
+        <Link to="/">
           <img src={logo} alt="" className="max-w-20" />
-        </div>
-        <a href="#" className={`text-black font-semibold ${borderStyle}`}>
+        </Link>
+      </div>
+
+      <div className="hidden md:flex items-center space-x-3 space-x-reverse lg:space-x-8 lg:space-x-reverse ">
+        <Link to="/" className="flex items-center space-x-1">
+          <img src={logo} alt="" className="max-w-20" />
+        </Link>
+        <Scroll
+          to="join"
+          spy={true}
+          smooth={true}
+          duration={500}
+          className={`cursor-pointer text-black font-semibold ${borderStyle}`}
+        >
           كيف نعمل؟
-        </a>
-        <a href="#" className={`text-black font-semibold ${borderStyle}`}>
+        </Scroll>
+        <Scroll
+          to="partner"
+          className={`cursor-pointer text-black font-semibold ${borderStyle}`}
+        >
           مميزاتنا
-        </a>
-        <a href="#" className={`text-black font-semibold ${borderStyle}`}>
+        </Scroll>
+        <Scroll
+          to="testimonials"
+          className={`cursor-pointer text-black font-semibold ${borderStyle}`}
+        >
           آراء عملائنا
-        </a>
-        <a href="#" className={`text-black font-semibold ${borderStyle}`}>
+        </Scroll>
+        <Link
+          to="/subscription"
+          className={`text-black font-semibold ${borderStyle}`}
+        >
           باقاتنا
-        </a>
-        <a href="#" className={`text-black font-semibold ${borderStyle}`}>
+        </Link>
+        <Scroll
+          to="footer"
+          className={`cursor-pointer text-black font-semibold ${borderStyle}`}
+        >
           تواصل معنا
-        </a>
+        </Scroll>
       </div>
       <div className="hidden md:flex items-center space-x-8 space-x-reverse">
-        <button className="bg-menu hover:bg-main text-white px-4 py-2 rounded">
+        {user ? (
+          <>
+            <Link
+              to="/dashboard"
+              className="bg-blue-500 hover:bg-blue-300 text-white font-bold py-2 px-4 rounded-md transition duration-300 "
+            >
+              Dashboard
+            </Link>
+            <div
+              className={`hidden  w-[13rem] h-[3rem] rounded-full text-white bg-menu lg:flex relative justify-center items-center content-center ${
+                language == "en" ? "pl-5 ml-3" : "pr-5 mr-3"
+              } `}
+            >
+              <img
+                className={`${
+                  language == "en" ? "left-0" : "right-0"
+                }  absolute  h-[3rem] `}
+                src="/Avatar.png"
+                alt="avatar"
+              />
+              <span>
+                {user ? user.user_name || user.user.user_name : t("name")}
+              </span>
+            </div>
+            <button
+              onClick={handleLogout}
+              className="bg-red-500 text-white font-bold py-2 px-4 rounded-md   hover:bg-red-800 transition duration-300"
+            >
+              Logout
+            </button>
+          </>
+        ) : (
+          <>
+            <Link
+              to="/register"
+              className="bg-menu hover:bg-main text-white px-4 py-2 rounded"
+            >
+              حساب جديد
+            </Link>
+            <Link to="/login" className="text-black">
+              تسجيل الدخول
+            </Link>
+          </>
+        )}
+        {/* <Link
+          to="/register"
+          className="bg-menu hover:bg-main text-white px-4 py-2 rounded"
+        >
           حساب جديد
-        </button>
-        <a href="/login" className="text-black">
+        </Link>
+        <Link to="/login" className="text-black">
           تسجيل الدخول
-        </a>
+        </Link> */}
       </div>
-    </div>
+    </nav>
   );
 };
 

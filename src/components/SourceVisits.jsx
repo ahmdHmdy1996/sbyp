@@ -9,10 +9,10 @@ import {
 } from "chart.js";
 import { useTranslation } from "react-i18next";
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
-import shadow from "/Icons/shadow.svg";
-import globe from "/Icons/globe.svg";
-import mail from "/Icons/mail.svg";
-import star from "/Icons/star.svg";
+import shadow from "/src/assets/Icons/shadow.svg";
+import globe from "/src/assets/Icons/globe.svg";
+import mail from "/src/assets/Icons/mail.svg";
+import star from "/src/assets/Icons/star.svg";
 
 
 const data = {
@@ -95,7 +95,7 @@ const SourceVisits = () => {
 
   return (
     <div className="col-span-6 lg:col-span-2 ">
-      <div className=" bg-white p-6 rounded-lg shadow-md">
+      <div className=" bg-white p-6 rounded-lg w-[95%]  m-auto">
         <h2 className="text-lg font-semibold mb-1">{t("SourceVisits")}</h2>
         <p className="text-gray-500 mb-4">38.4 {t("Visitors")}</p>
         <div className="mb-6 w-[100%] ">

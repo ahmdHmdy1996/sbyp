@@ -1,8 +1,8 @@
 import React from "react";
-import BrandPayPal from "/Icons/brand-paypal-1.svg";
-import ChartPie from "/Icons/chart-pie-2.svg";
-import DotVetrical from "/Icons/dots-vertical.svg";
-import Dollar from "/Icons/currency-dollar-1.svg";
+import BrandPayPal from "/src/assets/Icons/brand-paypal-1.svg";
+import ChartPie from "/src/assets/Icons/chart-pie-2.svg";
+import DotVetrical from "/src/assets/Icons/dots-vertical.svg";
+import Dollar from "/src/assets/Icons/currency-dollar-1.svg";
 
 const WeeklyProfit = () => {
   return (
@@ -18,15 +18,15 @@ const WeeklyProfit = () => {
           </p>
         </div>
 
-        <div className="text-gray-400">
+        <div className="text-gray-400 ">
           <img src={DotVetrical} alt="" />
         </div>
       </div>
       {/*  */}
 
       {/*  */}
-      <div className="flex justify-around items-center mb-4">
-        <div className="flex flex-col mb-4">
+      <div className="flex flex-col lg:flex-row  justify-around items-center mb-4">
+        <div className="flex flex-col mb-12 lg:mb-6">
           <div className="flex items-center mb-5">
             <h3 className="text-2xl font-semibold text-gray-500">468 ر.س</h3>
             <div className="text-green-500 bg-green-100 px-2 py-1 rounded-md text-md mx-2">
@@ -40,9 +40,9 @@ const WeeklyProfit = () => {
             </p>
           </div>
         </div>
-        <div className="flex justify-center items-center m-auto mb-4 mx-2 max-w-[240px]">
-          <div className="w-full">
-            <div className="flex justify-between items-end h-28">
+        <div className="flex justify-center items-center m-auto mb-4 mx-2 w-48 max-w-[240px]">
+          <div className="w-full ">
+            <div className="flex justify-between items-end h-28 w-56 m-auto">
               <div className="w-[7%] bg-purple-200 h-16 rounded-t-md"></div>
               <div className="w-[7%] bg-purple-200 h-20 rounded-t-md"></div>
               <div className="w-[7%] bg-purple-200 h-24 rounded-t-md"></div>
@@ -51,7 +51,7 @@ const WeeklyProfit = () => {
               <div className="w-[7%] bg-purple-200 h-16 rounded-t-md"></div>
               <div className="w-[7%] bg-purple-200 h-20 rounded-t-md"></div>
             </div>
-            <div className="flex justify-between text-xs text-gray-400 mt-2 ">
+            <div className="flex justify-between w-56 text-[7px] text-xs text-gray-400 mt-2 ">
               <span>السبت</span>
               <span className="mx-1 ">الأحد</span>
               <span>الاثنين</span>
@@ -73,10 +73,10 @@ const WeeklyProfit = () => {
               alt=""
               className="p-1 bg-red-100 rounded-md mx-2"
             />
-            <p className="text-sm text-gray-400">المصروفات</p>
+            <p className="text-xs lg:text-sm text-gray-400">المصروفات</p>
           </div>
 
-          <p className="text-xl font-semibold mb-3   ">74.19 ر.س</p>
+          <p className="text-sm lg:text-xl font-semibold mb-3   ">74.19 ر.س</p>
 
           <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-700">
             <div className="bg-red-500 h-1.5 rounded-full dark:bg-blue-500 w-[25%] "></div>
@@ -90,10 +90,10 @@ const WeeklyProfit = () => {
               alt=""
               className="p-1 bg-blue-100 rounded-md mx-2"
             />
-            <p className="text-sm text-gray-400 ">صافي الأرباح</p>
+            <p className="text-xs lg:text-sm text-gray-400 ">صافي الأرباح</p>
           </div>
 
-          <p className="text-xl font-semibold text-teal-500 mb-3 ">
+          <p className="text-sm lg:text-xl font-semibold text-teal-500 mb-3 ">
             256.34 ر.س
           </p>
           <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-700">
@@ -108,10 +108,10 @@ const WeeklyProfit = () => {
               alt=""
               className="p-1 bg-purple-100 rounded-md mx-2"
             />
-            <p className="text-sm text-gray-400">المدفوعات</p>{" "}
+            <p className="text-xs lg:text-sm text-gray-400">المدفوعات</p>{" "}
           </div>
 
-          <p className="text-xl font-semibold text-purple-500 mb-3">545.69 ر.س</p>
+          <p className="text-sm lg:text-xl font-semibold text-purple-500 mb-3">545.69 ر.س</p>
           <div className="w-full bg-gray-200 rounded-full h-1.5 mb-4 dark:bg-gray-700">
             <div className="bg-menu h-1.5 rounded-full dark:bg-blue-500 w-[70%] "></div>
           </div>

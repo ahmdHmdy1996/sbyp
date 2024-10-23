@@ -11,14 +11,14 @@ import {
 } from "../redux/reducer/languageSlice";
 import MobileMenu from "./MobileMenu";
 import { MdMenu } from "react-icons/md";
-import { useLocation } from 'react-router-dom';
-
-
-
+import { Link, useLocation } from "react-router-dom";
+import Notifications from "./Notifications";
 
 const Navbar = () => {
-  const [open , setOpen] = useState(false)
-  const {pathname} = useLocation()
+  const { user } = useSelector((state) => state.auth);
+  const [open, setOpen] = useState(false);
+  const [showNotifications, setShowNotifications] = useState(false);
+  const { pathname } = useLocation();
   const dispatch = useDispatch();
   const lang = useSelector((state) => state.language.lang);
 
@@ -42,17 +42,23 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`${pathname === '/login' ?"hidden" :"flex"} bg-home px-4 pb-5  flex-col lg:flex-row justify-between  items-center content-center  ${
+      className={`${
+        pathname === "/login" ? "hidden" : "flex"
+      } bg-home px-4 py-5  flex-col lg:flex-row justify-between  items-center content-center  ${
         language == "en" ? "right-0" : "left-0"
       }`}
     >
+      {/* Mobile Menu */}
 
-     {/* Mobile Menu */}
+      <div className="flex lg:hidden justify-between  w-full items-center mb-4">
+        <MdMenu
+          className="text-4xl cursor-pointer bg-menu text-white p-1 rounded-xl "
+          onClick={() => setOpen(!open)}
+        />
+        <MobileMenu open={open} />
 
-      <div className="flex lg:hidden flex justify-between  w-full items-center mb-4">
-        <MdMenu className="text-4xl cursor-pointer bg-menu text-white p-1 rounded-xl " onClick={()=>setOpen(!open)}/>
-        <MobileMenu open={open}/>
-        <div
+        <Link
+          to="/dashboard/profile"
           className={`flex  w-[11rem] h-[3rem] rounded-full text-white bg-menu  relative justify-center items-center content-center ${
             language == "en" ? "pl-5" : "pr-5"
           } `}
@@ -64,22 +70,24 @@ const Navbar = () => {
             src="/Avatar.png"
             alt="avatar"
           />
-          <span> </span>
-        </div>
+          <span>
+            {user ? user.user_name || user.user.user_name : t("name")}{" "}
+          </span>
+        </Link>
       </div>
 
       <div className="flex w-full justify-between lg:justify-center">
-        <form class="w-[50%] ">
+        <form className="w-[50%] ">
           <label
-            for="default-search"
-            class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
+            htmlFor="default-search"
+            className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
           >
             Search
           </label>
-          <div class="relative w-full">
-            <div class="absolute inset-y-0 start-0 flex items-center ps-5 pointer-events-none ">
+          <div className="relative w-full">
+            <div className="absolute inset-y-0 start-0 flex items-center ps-5 pointer-events-none ">
               <svg
-                class="w-4 h-4 text-gray-500 "
+                className="w-4 h-4 text-gray-500 "
                 aria-hidden="true"
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -87,9 +95,9 @@ const Navbar = () => {
               >
                 <path
                   stroke="#444050"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"
                 />
               </svg>
@@ -97,7 +105,7 @@ const Navbar = () => {
             <input
               type="search"
               id="default-search"
-              class={` border py-3  ${
+              className={` border py-3  ${
                 language == "en" ? "pl-12" : "pr-12"
               }  border-[#DADADA] rounded-full w-full`}
               placeholder={language == "en" ? "Search" : "بحث"}
@@ -120,21 +128,26 @@ const Navbar = () => {
           </li>
           <li className="text-xl border bg-white text-gray-500 rounded-full border-[#DADADA] px-3 py-3 mx-3 cursor-pointer">
             <MdOutlineTranslate
-              onClick={() =>
-                document.body.dir === "rtl"
-                  ? changeLanguage("en")
-                  : changeLanguage("ar")
-              }
+            // onClick={() =>
+            //   document.body.dir === "rtl"
+            //     ? changeLanguage("en")
+            //     : changeLanguage("ar")
+            // }
             />
           </li>
           <li className="text-xl border bg-white text-gray-500 rounded-full border-[#DADADA] px-3 py-3 ">
             <AiOutlineShoppingCart />
           </li>
-          <li className="text-xl border bg-white text-gray-500 rounded-full border-[#DADADA] px-3 py-3 mx-3">
+          <li
+            className="text-xl border bg-white text-gray-500 rounded-full border-[#DADADA] px-3 py-3 mx-3 cursor-pointer relative"
+            onClick={() => setShowNotifications(!showNotifications)}
+          >
             <HiOutlineBell />
+            <Notifications isOpen={showNotifications} />
           </li>
         </ul>
-        <div
+        <Link
+          to="/dashboard/profile"
           className={`hidden  w-[13rem] h-[3rem] rounded-full text-white bg-menu lg:flex relative justify-center items-center content-center ${
             language == "en" ? "pl-5 ml-3" : "pr-5 mr-3"
           } `}
@@ -146,8 +159,10 @@ const Navbar = () => {
             src="/Avatar.png"
             alt="avatar"
           />
-          <span>{t("name")}</span>
-        </div>
+          <span>
+            {user ? user.user_name || user.user.user_name : t("name")}
+          </span>
+        </Link>
       </div>
     </nav>
   );

@@ -1,10 +1,10 @@
 import React from "react";
-import Avatar from "/Images/Avatar.png";
-import Avatar1 from "/Images/Avatar-1.png";
-import Avatar2 from "/Images/Avatar-2.png";
-import Avatar3 from "/Images/Avatar-3.png";
-import Avatar4 from "/Images/Frame93.png";
-import DotVetrical from "/Icons/dots-vertical.svg";
+import Avatar from "/src/assets/Images/Avatar.png";
+import Avatar1 from "/src/assets/Images/Avatar-1.png";
+import Avatar2 from "/src/assets/Images/Avatar-2.png";
+import Avatar3 from "/src/assets/Images/Avatar-3.png";
+import Avatar4 from "/src/assets/Images/Frame93.png";
+import DotVetrical from "/src/assets/Icons/dots-vertical.svg";
 
 const TopSelling = () => {
   const Array = [
@@ -47,8 +47,8 @@ const TopSelling = () => {
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-md col-span-6 lg:col-span-4">
-      <div className="flex items-center justify-between mb-5">
-        <h2 className="text-lg font-semibold">المنتجات الاكثر مبيعا</h2>
+      <div className="flex items-center justify-between mb-5 ">
+        <h2 className="text-xs lg:text-lg font-semibold">المنتجات الاكثر مبيعا</h2>
         <input
           type="text"
           placeholder="ابحث عن المنتجات"
@@ -57,7 +57,7 @@ const TopSelling = () => {
       </div>
       <table className="w-full mb-5">
         <thead >
-          <tr className="text-gray-500 text-sm">
+          <tr className="text-gray-500 text-xs lg:text-sm">
             <th className="py-2">
               <input type="checkbox" />
             </th>
@@ -69,7 +69,7 @@ const TopSelling = () => {
         </thead>
         <tbody className="text-start">
           {Array.map((item) => (
-            <tr key={item.pruductName} className="border-t text-start">
+            <tr key={item.pruductName} className="border-t text-start text-xs">
               <td className="py-2">
                 <input type="checkbox" />
               </td>

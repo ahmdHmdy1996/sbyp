@@ -6,7 +6,9 @@ export default {
       padding: "2rem",
     },
     screens: {
-      sm: "640px",
+      xs:"300px",
+
+      sm: "400px",
       // => @media (min-width: 640px) { ... }
 
       md: "768px",
@@ -23,6 +25,7 @@ export default {
     },
     colors: {
       main: "#5b21b6",
+      hover:"#8C82F0",
       home: "#f5f6fb",
       primary: "#0047FF",
       white: "#FFF",
@@ -30,6 +33,7 @@ export default {
       yellow: "#858585",
       black: "#000",
       gray: {
+        100: "#f4f1ff",
         200: "#e5e7eb",
         300: "#9D9DA0",
         400: "#7d7c86",
@@ -40,6 +44,7 @@ export default {
         100: "#e0e7ff",
         200: "#e9d5ff",
         300: "#f4e9ff",
+        400: "#E8E6FC",
       },
       green: {
         100: "#dcfce7",
@@ -48,15 +53,24 @@ export default {
       red: {
         100: "#fee2e2",
         500: "#ef4444",
+        800:"#991b1b"
       },
       blue: {
         100: "#dbeafe",
         300: "#7dd3fc",
+        500:"#3b82f6",
+        900: "#060C3C",
       },
       orange: {
         500: "#f97316",
         100: "#ffedd5",
       },
+      cyan:{
+        100:"#cffafe",
+        200:"#a5f3fc",
+        400:"#22d3ee",
+        500:"#06b6d4"
+      }
     },
     extend: {
       animation: {

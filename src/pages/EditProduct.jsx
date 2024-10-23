@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Array } from "./MyProducts";
+import { myProductArray } from "./MyProducts";
 import { useLocation } from "react-router-dom";
 import Switch from "@mui/material/Switch";
-import Vector from "/Icons/Vector2.png";
-import link from "/Icons/link.svg";
+import Vector from "/src/assets/Icons/Vector2.png";
+import link from "/src/assets/Icons/link.svg";
+import { productArray2 } from "./Products";
 
 const label = { inputProps: { "aria-label": "Switch demo" } };
 
@@ -14,7 +15,12 @@ const EditProduct = () => {
 
   useEffect(
     () => {
-      Array.map((item) => {
+      myProductArray.map((item) => {
+        if (item.code === id) {
+          setProduct(item);
+        }
+      });
+      productArray2.map((item) => {
         if (item.code === id) {
           setProduct(item);
         }
