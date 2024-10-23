@@ -49,14 +49,14 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`flex justify-between items-center p-4 bg-white mx-2 lg:mx-16 m-auto  top-0 left-0 w-full transition-all duration-300 ${
-        isScrolled ? "shadow-md fixed z-30" : ""
+      className={`flex justify-between items-center p-4 bg-white  m-auto   w-full transition-all duration-300 ${
+        isScrolled ? "shadow-md fixed z-30 op-0 left-0" : ""
       }`}
     >
-      <div className="flex md:hidden justify-between w-full z-30">
+      <div className="flex md:hidden justify-between w-full ">
         <MdMenu
           className="text-4xl cursor-pointer bg-menu text-white p-1 rounded-xl z-30"
-          onClick={() => setOpen((prev) => !prev)}
+          onClick={() => setOpen(!open)}
         />
         <MobileMenu open={open} onClose={handleMenuClose} />
         <Link to="/">

@@ -96,7 +96,7 @@ const Products = () => {
         });
     }
   }, [i18n]);
-  console.log(productArray);
+ 
   
   const language = localStorage.getItem("language");
   return (
